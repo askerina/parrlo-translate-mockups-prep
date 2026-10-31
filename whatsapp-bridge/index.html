@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Parrlo — мост с WhatsApp · макеты</title>
+<title>Parrlo — «Перевести в Parrlo» · макеты</title>
 <style>
 @font-face{font-family:Inter;src:url(../keyboard/fonts/Inter-Variable.woff2) format("woff2");font-weight:100 900;font-display:swap}
 @font-face{font-family:Nunito;src:url(../keyboard/fonts/Nunito-Variable.woff2) format("woff2");font-weight:200 1000;font-display:swap}
@@ -84,7 +84,7 @@ body.shot .screen{border-radius:0}
 .seg{display:flex;background:var(--ink);border-radius:12px;padding:3px;gap:3px}
 .seg button{flex:1;height:40px;border-radius:9px;font-size:15px;font-weight:600;color:var(--text2);display:flex;align-items:center;justify-content:center;gap:6px}
 .seg button.on{background:var(--card);color:var(--text)}
-.opt{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:var(--ink);border:1.5px solid transparent;width:100%;min-height:64px}
+.opt{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:14px;background:var(--ink);border:1.5px solid transparent;width:100%;min-height:58px}
 .opt.on{border-color:var(--green)}
 .opt .rad{width:22px;height:22px;border-radius:11px;border:2px solid #8E98A6;flex:none;display:grid;place-items:center}
 .opt.on .rad{border-color:var(--green)}
@@ -167,13 +167,22 @@ body.shot .screen{border-radius:0}
 .listening{display:flex;flex-direction:column;align-items:center;gap:14px;padding:6px 0}
 .bigstop{width:84px;height:84px;border-radius:42px;background:var(--green);color:var(--ink);display:grid;place-items:center;box-shadow:0 0 0 10px rgba(43,196,138,.15),0 0 0 22px rgba(43,196,138,.07)}
 .caret{display:inline-block;width:2px;height:22px;background:var(--green);vertical-align:-4px;margin-left:2px}
+.ailab{display:flex;align-items:center;gap:6px;margin-top:10px;font-size:13px;font-weight:600;color:var(--text)}
+.ailab svg{color:var(--warn);flex:none}
+.chipsoon{margin-left:auto;flex:none;font-size:12px;font-weight:700;padding:4px 9px;border-radius:8px;background:#2E3540;color:#C7CED8}
+.opt.dis{cursor:not-allowed}
+.opt.dis .rad{border-color:#5A6472}
+.whynote{font-size:13px;line-height:1.4;color:var(--text2);padding:0 4px}
+.cloudnote{margin:14px 20px 0;display:flex;gap:12px;align-items:flex-start;background:var(--surface);border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.4}
+.cloudnote svg{color:var(--green);flex:none;margin-top:1px}
+.lnk2{color:var(--green);font-weight:600;font-size:14px;min-height:32px;display:inline-flex;align-items:center}
 </style>
 </head>
 <body>
 <div class="page">
   <aside class="side">
-    <h1>Pa<span class="rr">rr</span>lo · WhatsApp</h1>
-    <div class="sub">Мост «WhatsApp → Parrlo → WhatsApp» для iOS-приложения Parrlo Translate. iPhone 17 (402×874), тёмная тема, бренд v2.3. Только макеты, кода приложения здесь нет.</div>
+    <h1>Pa<span class="rr">rr</span>lo · перевод сообщений</h1>
+    <div class="sub">Расширение «Перевести в Parrlo»: сообщение из мессенджера (на примере WhatsApp) → перевод → ответ. iOS-приложение Parrlo Translate, iPhone 17 (402×874), тёмная тема, бренд v2.3. Только макеты, кода приложения здесь нет. Parrlo не связан с WhatsApp.</div>
     <div class="proto">Прототип: переводы заранее заготовлены</div>
     <nav class="nav" id="nav"></nav>
   </aside>
@@ -206,6 +215,12 @@ const I={
  chev:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>',
  bubble:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg>',
  dots:'<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18" cy="12" r="2"/></svg>',
+ spark:'<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.3L20.5 10l-6.3 2.2L12 18.5l-2.2-6.3L3.5 10l6.3-1.7z"/></svg>',
+ cloud:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M7 18h10a4 4 0 0 0 .5-7.97A6 6 0 0 0 6 9.5 4.25 4.25 0 0 0 7 18z"/></svg>',
+ lock:'<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',
+ note:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>',
+ mail:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',
+ msgr:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="4"/><path d="M8 17l-2 4 5-4"/><path d="M8 10h8M8 13h5" stroke-linecap="round"/></svg>',
  check:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>',
 };
 /* ---------- заготовленные примеры (RU ↔ ES, собеседник на «tú») ---------- */
@@ -218,57 +233,68 @@ const EX={
   outEs:'Llego a las 10:30. ¿Nos vemos en la entrada principal?',
   sig:'Переведено ИИ в Parrlo · parrlo.com',
 };
+/* метка ИИ (RG 31.10): видимая подпись на каждом синтезированном голосе; имя файла — на языке голоса */
+const AI_RU='Голос синтезирован ИИ · Parrlo';
+const AI_ES='Voz generada por IA · Parrlo';
+const FILE_ES='Voz IA Parrlo — español.m4a';
+const EXT='Перевести в Parrlo';
 const WAVE=[6,10,16,9,20,24,14,8,18,26,22,12,7,15,21,11,6,13,19,9,5,10,17,12,7,4];
 const wave=(n=26,g)=>`<div class="wave${g?' g':''}">${WAVE.slice(0,n).map(h=>`<i style="height:${h}px"></i>`).join('')}</div>`;
 const status=()=>`<div class="status"><span>21:24</span><i class="island"></i><span class="icons">${I.sig}${I.wifi}${I.bat}</span></div>`;
 const parrot=s=>`<img class="parrot" src="${PARROT}" width="${s}" height="${s}" alt="Parrlo">`;
 const example=`<div class="example"><i></i>Пример: перевод заготовлен заранее</div>`;
+const aiLabel=(t=AI_RU)=>`<div class="ailab">${I.spark}${t}</div>`;
 const wm=`<div class="wm">Pa<span class="rr">rr</span>lo</div>`;
+const isShot=()=>document.body.classList.contains('shot');
 
 /* ---------- кадры ---------- */
 const S=[
  {sec:'c · Как узнать о функции'},
- {id:'wa-01-home-card',t:'01 · Карточка на главной',d:'«Переводите голосовые из WhatsApp»',
-  n:`<span class="tag new">Предлагается</span><p>Карточка над пустым экраном разговора. Показывается, пока пользователь ни разу не пересылал сообщение в Parrlo; <b>«Скрыть»</b> убирает навсегда. «Как это работает» → мини-обучение (02).</p><p><span class="tag now">Сейчас</span><br>Единственная подсказка про WhatsApp — строка на листе «Перевести текст»: «Напишите или вставьте текст — из WhatsApp, SMS или письма…». Про «Поделиться → Parrlo» в приложении не сказано нигде.</p>`},
- {id:'wa-02-onboarding',t:'02 · Мини-обучение, 3 шага',d:'Поделиться → Parrlo → Ответить',
-  n:`<span class="tag new">Предлагается</span><p>Один экран, три шага. «Показать на примере» запускает поток (a) на заготовленном сообщении.</p><p><span class="tag chk">Проверить App</span><br>Названия пунктов в WhatsApp («Переслать», значок «Поделиться») зависят от версии WhatsApp — сверить на устройстве перед финальным текстом.</p>`},
+ {id:'wa-01-home-card',t:'01 · Карточка на главной',d:'подсказка RG 6.2',
+  n:`<span class="tag new">Предлагается</span><p>Карточка над пустым экраном разговора. Текст — подсказка RG 6.2 дословно. Показывается, пока пользователь ни разу не делился сообщением с Parrlo; «Скрыть» убирает навсегда. «Как это работает» → 02.</p><p><span class="tag now">Сейчас</span><br>Единственная подсказка — строка на листе «Перевести текст»: «Напишите или вставьте текст — из WhatsApp, SMS или письма…».</p>`},
+ {id:'wa-02-onboarding',t:'02 · Мини-обучение, 3 шага',d:'+ облако и Политика',
+  n:`<span class="tag new">Предлагается</span><p>Три шага и обязательная строка RG: «Распознавание и перевод — в облаке, файл не сохраняем» + ссылка «Политика конфиденциальности».</p><p><span class="tag chk">Проверить App</span><br>Названия пунктов в WhatsApp («Переслать», «Поделиться») зависят от версии.</p>`},
  {id:'wa-03-empty-tip',t:'03 · Совет в пустой «Истории»',d:'empty state',
-  n:`<span class="tag new">Предлагается</span><p>Пустая «История» объясняет второй способ получить перевод — из WhatsApp. Совет пропадает после первого перевода из WhatsApp.</p>`},
- {sec:'a · Из WhatsApp в Parrlo'},
+  n:`<span class="tag new">Предлагается</span><p>Подсказка RG 6.2 дословно. Совет пропадает после первого перевода из другого приложения.</p>`},
+ {sec:'a · Из мессенджера в Parrlo'},
  {id:'wa-04-in-longpress',t:'04 · Удержание сообщения',d:'WhatsApp (схема)',
-  n:`<p>Схема мессенджера, не интерфейс WhatsApp. Пользователь удерживает голосовое → «Переслать» → значок «Поделиться» (или «Поделиться» в меню — зависит от версии).</p><p>Нажмите «Переслать» в кадре.</p>`},
- {id:'wa-05-in-sharesheet',t:'05 · Системный лист «Поделиться»',d:'Parrlo в ряду приложений',
-  n:`<p>Системный лист iOS. Голосовое WhatsApp приходит в расширение <b>аудиофайлом .opus</b> (Ogg Opus). Если Parrlo нет в ряду — «Ещё» → включить Parrlo (об этом шаг 2 обучения).</p><p><span class="tag now">Сейчас</span><br>Расширение «Поделиться» у Parrlo уже есть: принимает аудио (в т.ч. .opus/.ogg) и текст.</p>`},
+  n:`<p>Схема мессенджера, не интерфейс WhatsApp: нейтральные серые цвета, без логотипа и фирменного зелёного. Удержание голосового → «Переслать» → «Поделиться».</p><p>Нажмите «Переслать» в кадре.</p>`},
+ {id:'wa-05-in-sharesheet',t:'05 · Системный лист «Поделиться»',d:'«Перевести в Parrlo»',
+  n:`<p>Системный лист iOS. Расширение называется «Перевести в Parrlo» (RG: название ок, без WhatsApp). Голосовое приходит <b>аудиофайлом .opus</b>.</p><p><span class="tag now">Сейчас</span><br>Расширение уже принимает аудио (в т.ч. .opus/.ogg) и текст.</p>`},
+ {id:'wa-05a-in-first-run',t:'05a · Первый запуск расширения',d:'лист RG 6.3, один раз',
+  n:`<span class="tag new">По RG 6.3</span><p>Показывается один раз при первом использовании расширения. Это уведомление, а не согласие: текст, заголовок и кнопки — RG 6.3 дословно. Возраст — 16+.</p><p>Если согласия на облачный перевод (#268) нет — дальше экран 05b, ничего не отправляется.</p>`},
+ {id:'wa-05b-in-consent-needed',t:'05b · «Нужно ваше разрешение»',d:'нет согласия #268 → не отправляем',
+  n:`<span class="tag chk">Текст — черновик</span><p>Заголовок «Нужно ваше разрешение» — из RG (§3, 5.1.2(i)). Основного текста в RG нет: взята строка из кода (черновик для RG). До согласия ничего не уходит на сервер.</p><p><span class="tag chk">Решение App</span><br>Расширение не может само открыть приложение: показать согласие #268 прямо в листе или объяснить, где его дать.</p>`},
  {id:'wa-06-in-sheet-voice',t:'06 · Лист Parrlo: голосовое',d:'расшифровка · перевод · слушать',
-  n:`<span class="tag new">Предлагается</span><p>Лист поверх WhatsApp: расшифровка оригинала (ES), перевод (RU), «Слушать перевод» (озвучка перевода), «Ответить» → поток (b).</p><p><span class="tag now">Сейчас</span><br>Расширение только сохраняет файл и пишет «Откройте Parrlo — голосовое уже там» / «Нажмите «Готово» и откройте приложение с экрана «Домой»». Перевод, «Ответить», «Скопировать перевод», «Отправить в WhatsApp» — уже внутри приложения. Именно этот переход «закрыть → найти Parrlo» делает функцию неочевидной.</p><p><span class="tag chk">Решение App</span><br>Переводить прямо в листе (сеть и лимит памяти расширения) или оставить передачу в приложение. Перед первой отправкой чужого голосового действует уже согласованный диалог «Чужое голосовое → Parrlo» — здесь не перерисован.</p>`},
+  n:`<span class="tag new">Предлагается</span><p>Расшифровка (ES), перевод (RU), «Слушать перевод» — под плеером видимая метка «${AI_RU}». «Ответить» ведёт к диктовке <b>ваших</b> слов; присланное голосовое никуда, кроме распознавания, не уходит — ни в «Мой голос», ни в запись образца. В расширении нет рекламы и покупок.</p><p><span class="tag now">Сейчас</span><br>Расширение только сохраняет файл: «Откройте Parrlo — голосовое уже там». Перевод — в приложении.</p>`},
  {id:'wa-07-in-sheet-text',t:'07 · Лист Parrlo: текст',d:'оригинал · перевод · слушать',
-  n:`<p>То же для текстового сообщения: расшифровки нет, показан оригинал и перевод.</p>`},
- {sec:'b · Ответ из Parrlo в WhatsApp'},
+  n:`<p>То же для текстового сообщения: оригинал и перевод, метка ИИ под плеером.</p>`},
+ {sec:'b · Ответ из Parrlo'},
  {id:'wa-08-out-dictate',t:'08 · Диктовка ответа',d:'RU → ES',
-  n:`<p>«Ответить» открывает диктовку. Направление берётся из входящего: собеседник писал по-испански → ответ переводится на испанский.</p><p><span class="tag chk">Проверить App</span><br>Доступен ли микрофон в расширении «Поделиться» или ответ надо вести уже в приложении.</p>`},
- {id:'wa-09-out-text',t:'09 · Отправить текстом',d:'перевод + видимая подпись',
-  n:`<p>Выбор «Текстом / Голосом». Текстом — уходит перевод; подпись «Переведено ИИ в Parrlo · parrlo.com» уже есть в коде (видимая, редактируется в WhatsApp, выключается в Настройках).</p><p>Переключайте «Текстом / Голосом» и голос прямо в кадре.</p>`},
- {id:'wa-10-out-myvoice',t:'10 · Голосом: «Мой голос»',d:'ваш созданный голос',
-  n:`<span class="tag new">Предлагается</span><p>Голосом — озвученный перевод. «Мой голос» — голос пользователя, созданный в Parrlo (отдельное согласие, кадры 70–79 v5.3). Метка «Синтетический голос (ИИ)» — из кадра 75 v5.3, место метки не утверждено.</p><p><span class="tag now">Сейчас</span><br>Отправки голосового в WhatsApp в приложении нет — только текстом.</p>`},
- {id:'wa-11-out-stdvoice',t:'11 · Голосом: стандартный',d:'«Мой голос» ещё не создан',
-  n:`<p>Если голос не создан — строка «Мой голос» неактивна, ссылка «Создать» ведёт на согласие «Мой голос». Там, где функция выключена (App Store-сборка), строку не показываем вовсе.</p>`},
+  n:`<p>Вы диктуете свой ответ по-русски, он переводится на испанский.</p><p><span class="tag chk">Проверить App</span><br>Доступен ли микрофон в расширении.</p>`},
+ {id:'wa-09-out-text',t:'09 · Отправить текстом',d:'«Отправить…» → лист «Поделиться»',
+  n:`<p>Основная кнопка — «Отправить…» (системный лист «Поделиться»). Вариант «Отправить в WhatsApp» — только если WhatsApp установлен (переключатель ниже). Подпись к тексту «${EX.sig}» уже есть в коде.</p>`},
+ {id:'wa-10-out-myvoice',t:'10 · Голосом: «Мой голос» — скоро',d:'закрыто до водяного знака',
+  n:`<span class="tag chk">Закрыто (RG)</span><p>Отправка «Моим голосом» закрыта, пока ElevenLabs письменно не подтвердит водяной знак (AI Act ст. 50(2)). Строка неактивна, «Скоро», не выбирается. По умолчанию — стандартный голос.</p>`},
+ {id:'wa-11-out-stdvoice',t:'11 · Голосом: стандартный',d:'метка ИИ · имя файла',
+  n:`<p>Стандартный голос разрешён с видимой меткой «${AI_RU}» на плеере и подписью «${AI_ES}» в сообщении (язык получателя). Имя файла — «${FILE_ES}».</p>`},
  {id:'wa-12-out-handoff-text',t:'12 · Текст → выбор чата',d:'WhatsApp (схема)',
-  n:`<p>Текст передаётся ссылкой WhatsApp без номера: WhatsApp открывает выбор чата, текст уже вписан и редактируется. Отправляет пользователь сам.</p>`},
- {id:'wa-13-out-handoff-voice',t:'13 · Голос → лист «Поделиться»',d:'аудиофайл → WhatsApp',
-  n:`<p>Голос передаётся файлом через системный лист «Поделиться» (UIActivityViewController) → WhatsApp → выбор чата.</p><p><span class="tag chk">Проверить App</span><br>Формат файла (m4a / opus) и машиночитаемая метка ИИ.</p>`},
- {id:'wa-14-out-result',t:'14 · Что увидит собеседник',d:'аудиофайл, не «голосовое»',
-  n:`<span class="tag chk">Проверить App</span><p>Аудио, отправленное через лист «Поделиться», в WhatsApp может прийти <b>аудиофайлом</b>, а не нативным голосовым (push-to-talk). Кадр показывает осторожный вариант. Подтвердить на устройстве с .m4a и .opus.</p>`},
+  n:`<p>WhatsApp открывает выбор чата, текст уже вписан и редактируется. Если WhatsApp не установлен — тот же текст через системный лист в любое приложение.</p>`},
+ {id:'wa-13-out-handoff-voice',t:'13 · Голос → лист «Поделиться»',d:'файл + подпись',
+  n:`<p>Аудиофайл «${FILE_ES}» и текст «${AI_ES}» уходят через системный лист. В ряду — значок «WhatsApp» нейтральным глифом мессенджера (не логотип).</p><p><span class="tag chk">Проверить App</span><br>Доходит ли текст-подпись вместе с аудио.</p>`},
+ {id:'wa-14-out-result',t:'14 · Что увидит собеседник',d:'аудиофайл + подпись',
+  n:`<span class="tag chk">Проверить App</span><p>Аудио через лист «Поделиться» может прийти <b>аудиофайлом</b>, а не голосовым, а подпись — потеряться. Кадр показывает ожидаемый вариант: имя файла с «Voz IA Parrlo» и подпись.</p>`},
 ];
-const BASE={mode:'text',voice:'mine',playing:false,hint:true};
+const BASE={mode:'text',voice:'std',playing:false,hint:true,waInstalled:false};
 let cur, st;
 
 function home(){
   return `${status()}<div class="body">
   <div class="apphead">${wm}<div class="rbtns"><span class="rb" aria-label="Пригласить собеседника">${I.qr}</span><span class="rb" aria-label="История">${I.clock}</span><span class="rb" aria-label="Настройки">${I.sliders}</span></div></div>
   ${st.hint?`<div class="hint">${parrot(56)}<div style="flex:1;min-width:0"><span class="chipx">Новое</span>
-    <h4>Переводите голосовые из WhatsApp</h4>
-    <p>Перешлите сообщение в Parrlo — услышите перевод и сразу ответите. Можно своим голосом.</p>
-    <div class="flowmini"><span>Удержать</span><em>→</em><span>Поделиться</span><em>→</em><span>Parrlo</span></div>
+    <h4>Переводите голосовые из других приложений</h4>
+    <p>Поделитесь голосовым или текстом из WhatsApp → «Перевести в Parrlo». Файл не сохраняем.</p>
+    <div class="flowmini"><span>Удержать</span><em>→</em><span>Поделиться</span><em>→</em><span>Перевести в Parrlo</span></div>
     <div style="display:flex;gap:8px;margin-top:14px"><button class="btn primary sm" data-go="wa-02-onboarding">Как это работает</button><button class="btn sec sm" data-act="hideHint">Скрыть</button></div>
   </div><button class="x" aria-label="Скрыть" data-act="hideHint">${I.close}</button></div>`:''}
   <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:0 32px;text-align:center">
@@ -282,18 +308,18 @@ function home(){
 function onboarding(){
   return `${status()}<div class="body">
   <div class="shead"><span class="l"></span><span class="c">${wm}</span><button class="r" data-go="wa-01-home-card" aria-label="Закрыть"><span class="rb" style="margin-left:auto">${I.close}</span></button></div>
-  <div style="padding:6px 20px 0">
-    <div style="font-family:Nunito;font-weight:900;font-size:28px;line-height:1.15">Голосовые из WhatsApp — в три шага</div>
-    <div class="muted" style="font-size:15px;line-height:1.45;margin-top:8px">Не нужно переслушивать и переписывать: Parrlo расшифрует, переведёт и поможет ответить.</div>
+  <div style="padding:2px 20px 0">
+    <div style="font-family:Nunito;font-weight:900;font-size:27px;line-height:1.15">Перевод сообщений в три шага</div>
+    <div class="muted" style="font-size:15px;line-height:1.45;margin-top:6px">Голосовое или текст из WhatsApp — Parrlo расшифрует, переведёт и поможет ответить.</div>
   </div>
-  <div style="padding:16px 20px 0;display:flex;flex-direction:column;gap:14px">
-    <div class="step"><span class="n">1</span><div style="flex:1"><h5>Удерживайте сообщение в WhatsApp</h5><p>Голосовое или текст → «Переслать» → значок «Поделиться».</p>
+  <div style="padding:14px 20px 0;display:flex;flex-direction:column;gap:12px">
+    <div class="step"><span class="n">1</span><div style="flex:1"><h5>Удерживайте сообщение</h5><p>Голосовое или текст → «Переслать» → «Поделиться».</p>
       <div class="ill">${I.fwd}<span class="pillmini">Переслать</span><span class="muted">→</span>${I.share(18)}<span class="pillmini">Поделиться</span></div></div></div>
-    <div class="step"><span class="n">2</span><div style="flex:1"><h5>Выберите Parrlo</h5><p>Нет в списке? Пролистайте ряд приложений, нажмите «Ещё» и включите Parrlo.</p>
-      <div class="ill"><span class="pillmini hl" style="display:flex;align-items:center;gap:6px">${parrot(20)}Parrlo</span><span class="pillmini">Ещё</span></div></div></div>
-    <div class="step"><span class="n">3</span><div style="flex:1"><h5>Слушайте перевод и отвечайте</h5><p>Продиктуйте ответ по-русски — отправим в WhatsApp на испанском: текстом или голосом, в том числе вашим.</p>
-      <div class="ill">${I.play(14)}<span class="pillmini">Слушать перевод</span>${I.mic(16)}<span class="pillmini">Ответить</span></div></div></div>
+    <div class="step"><span class="n">2</span><div style="flex:1"><h5>Выберите «Перевести в Parrlo»</h5><p>Нет в списке? Пролистайте ряд приложений → «Ещё» → включите.</p>
+      <div class="ill"><span class="pillmini hl" style="display:flex;align-items:center;gap:6px">${parrot(20)}Перевести в Parrlo</span><span class="pillmini">Ещё</span></div></div></div>
+    <div class="step"><span class="n">3</span><div style="flex:1"><h5>Слушайте перевод и отвечайте</h5><p>Продиктуйте ответ по-русски — отправите его на испанском, текстом или голосом.</p></div></div>
   </div>
+  <div class="cloudnote">${I.cloud}<div><div>Распознавание и перевод — в облаке, файл не сохраняем</div><button class="lnk2" data-act="privacy">Политика конфиденциальности</button></div></div>
   <div class="foot" style="margin-top:auto;padding-top:8px;flex-direction:row"><button class="btn sec" style="flex:1" data-go="wa-01-home-card">Понятно</button><button class="btn primary" style="flex:1.5" data-go="wa-04-in-longpress">Показать на примере</button></div>
   </div>`;
 }
@@ -307,8 +333,8 @@ function emptyTip(){
   </div>
   <div class="card" style="margin:0 16px 48px;display:flex;gap:14px;align-items:flex-start">
     <span style="width:44px;height:44px;border-radius:12px;background:var(--successBg);color:var(--green);display:grid;place-items:center;flex:none">${I.share(22)}</span>
-    <div style="flex:1;min-width:0"><div style="font-size:16px;font-weight:700;line-height:1.3">Совет: голосовые из WhatsApp</div>
-    <div class="muted" style="font-size:14px;line-height:1.45;margin-top:4px">Удерживайте сообщение → «Переслать» → «Поделиться» → Parrlo. Перевод появится здесь.</div>
+    <div style="flex:1;min-width:0"><div style="font-size:16px;font-weight:700;line-height:1.3">Совет: сообщения из других приложений</div>
+    <div class="muted" style="font-size:14px;line-height:1.45;margin-top:4px">Поделитесь голосовым или текстом из WhatsApp → «Перевести в Parrlo». Файл не сохраняем.</div>
     <button style="color:var(--green);font-size:15px;font-weight:600;margin-top:10px;min-height:44px;display:flex;align-items:center;gap:4px" data-go="wa-02-onboarding">Как это работает ${I.chev}</button></div>
   </div></div>`;
 }
@@ -332,24 +358,51 @@ function shareSheetIn(){
   return waChat('',{}) + `<div class="dim"></div><div class="ios">
     <div class="hd"><span class="fic">${I.file}</span><div><div class="t">Голосовое сообщение</div><div class="d">Аудиофайл .opus · 0:12</div></div><span class="x">${I.close}</span></div>
     <div class="apps">
-      <button class="app hl" data-go="wa-06-in-sheet-voice"><span class="ic" style="background:var(--surface)">${parrot(50)}</span>Parrlo</button>
-      <div class="app"><span class="ic">${I.bubble}</span>Сообщения</div>
+      <button class="app hl" data-go="wa-05a-in-first-run"><span class="ic" style="background:var(--surface)">${parrot(50)}</span>Перевести в Parrlo</button>
+      <div class="app"><span class="ic">${I.note}</span>Заметки</div>
       <div class="app"><span class="ic">${I.file}</span>Файлы</div>
       <div class="app"><span class="ic">${I.dots}</span>Ещё</div>
     </div>
     <div class="acts"><div>Копировать ${I.copy}</div><div>Сохранить в Файлы ${I.file}</div></div>
     <div class="syslabel">Системный лист iOS «Поделиться»</div>
-  </div><i class="tap" style="left:27px;top:626px"></i>`;
+  </div><i class="tap" style="left:27px;top:612px"></i>`;
+}
+const sheetBg=()=>`${status()}<div class="wa"></div><div class="dim" style="top:62px"></div>`;
+function firstRun(){
+  return sheetBg()+`<div class="sheet" style="top:72px">
+    <div class="grab"></div>
+    <div class="shead"><span class="l"></span><span class="c">${wm}</span><span class="r"></span></div>
+    <div class="scroll" style="padding:0 20px">
+      <div style="display:flex;justify-content:center;margin:4px 0 2px">${parrot(72)}</div>
+      <div style="font-family:Nunito;font-weight:900;font-size:24px;line-height:1.2;text-align:center">Перевод сообщений из других приложений</div>
+      <div style="font-size:16px;line-height:1.5;color:var(--text)">Голосовое или текст, которые вы отправляете сюда, в том числе от другого человека, уходят на наш сервер и сторонним сервисам распознавания речи и перевода (они могут быть в США) — только чтобы перевести. Parrlo удаляет файл сразу после перевода и не использует его для обучения. Чужой голос не используется для «Моего голоса». Делитесь только тем, что вправе передавать. Для пользователей от 16 лет. Подробнее — в Политике конфиденциальности.</div>
+      <button class="lnk2" style="font-size:16px;min-height:44px" data-act="privacy">Политика конфиденциальности</button>
+    </div>
+    <div class="foot"><button class="btn primary" data-go="wa-06-in-sheet-voice">Понятно</button>${isShot()?'':`<button class="btn ghost" style="height:40px;font-size:15px" data-go="wa-05b-in-consent-needed">Прототип: если согласия #268 нет →</button>`}</div>
+  </div>`;
+}
+function consentNeeded(){
+  return sheetBg()+`<div class="sheet" style="top:72px">
+    <div class="grab"></div>
+    <div class="shead"><button class="l" data-go="wa-04-in-longpress">Закрыть</button><span class="c">${wm}</span><span class="r"></span></div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 28px;gap:14px">
+      <span style="width:72px;height:72px;border-radius:36px;background:var(--card);display:grid;place-items:center;color:var(--text)">${I.lock}</span>
+      <div style="font-family:Nunito;font-weight:900;font-size:26px;line-height:1.2">Нужно ваше разрешение</div>
+      <div style="font-size:16px;line-height:1.5">Нужно ваше согласие на отправку голоса и текста на сервер. Дайте его и поделитесь голосовым ещё&nbsp;раз.</div>
+      <span class="chipw" style="white-space:normal">Текст — черновик из кода, ждёт RG</span>
+      <div class="muted" style="font-size:14px;line-height:1.45">Голосовое не отправлено.</div>
+    </div>
+    <div class="foot"><button class="btn primary" data-act="consent">Дать согласие</button><button class="btn sec" data-go="wa-04-in-longpress">Не сейчас</button></div>
+  </div>`;
 }
 function listenBtn(){
-  return st.playing
+  return (st.playing
    ? `<button class="listen" data-act="play"><span class="pl">${I.pause(14)}</span>Слушаем… <span class="prog"><b></b></span><span style="font-size:13px">0:02 / 0:05</span></button>`
-   : `<button class="listen" data-act="play"><span class="pl">${I.play(14)}</span>Слушать перевод</button>`;
+   : `<button class="listen" data-act="play"><span class="pl">${I.play(14)}</span>Слушать перевод</button>`) + aiLabel();
 }
 function parrloSheet(kind){
   const voice=kind==='voice';
-  return `${status()}<div class="wa"></div><div class="dim" style="top:62px"></div>
-  <div class="sheet" style="top:72px">
+  return sheetBg()+`<div class="sheet" style="top:72px">
     <div class="grab"></div>
     <div class="shead"><button class="l" data-go="wa-04-in-longpress">Закрыть</button><span class="c">${wm}</span><span class="r"></span></div>
     <div class="src">${voice?I.wave:I.text}Из WhatsApp · ${voice?'голосовое 0:12':'текст'} · Lucía</div>
@@ -366,8 +419,7 @@ function parrloSheet(kind){
   </div>`;
 }
 function dictate(){
-  return `${status()}<div class="wa"></div><div class="dim" style="top:62px"></div>
-  <div class="sheet" style="top:72px">
+  return sheetBg()+`<div class="sheet" style="top:72px">
     <div class="grab"></div>
     <div class="shead"><button class="l" data-go="wa-06-in-sheet-voice">Отмена</button><span class="c" style="font-size:17px;font-weight:600">Ответ для Lucía</span><span class="r"></span></div>
     <div class="scroll">
@@ -379,31 +431,32 @@ function dictate(){
     <div class="foot" style="align-items:center;gap:10px"><button class="bigstop" data-go="wa-09-out-text" aria-label="Готово">${I.stop}</button><div style="font-size:15px;font-weight:600;margin-top:10px">Нажмите, когда закончите</div></div>
   </div>`;
 }
+function sendLabel(){ return st.waInstalled ? 'Отправить в WhatsApp' : 'Отправить…'; }
 function sendScreen(){
   const v=st.mode==='voice';
-  const noClone=cur.id==='wa-11-out-stdvoice';
-  const voiceMine = v && st.voice==='mine' && !noClone;
+  const why = cur.id==='wa-10-out-myvoice';
   const opts = v ? `
     <div style="display:flex;flex-direction:column;gap:8px">
-      <button class="opt${voiceMine?' on':''}${noClone?' dis':''}" data-act="voice" data-v="mine"><span class="rad"></span><div><div class="t">Мой голос</div><div class="d">${noClone?'Голос ещё не создан':'Ваш голос, созданный в Parrlo'}</div></div>${noClone?`<span class="lnk">Создать</span>`:''}</button>
-      <button class="opt${!voiceMine?' on':''}" data-act="voice" data-v="std"><span class="rad"></span><div><div class="t">Стандартный голос</div><div class="d">Голос iPhone</div></div></button>
+      <div class="opt dis" aria-disabled="true"><span class="rad"></span><div><div class="t">Мой голос</div><div class="d">Отправка вашим голосом пока недоступна</div></div><span class="chipsoon">Скоро</span></div>
+      ${why?`<div class="whynote">Сейчас ответ озвучит стандартный голос.</div>`:''}
+      <button class="opt on" data-act="voice" data-v="std"><span class="rad"></span><div><div class="t">Стандартный голос</div><div class="d">Синтезированный голос Parrlo</div></div></button>
     </div>
-    <div class="card" style="padding:12px 14px;background:var(--ink)"><div class="vplayer"><button class="pl" style="background:var(--green);color:var(--ink)" data-act="play" aria-label="Прослушать">${st.playing?I.pause(14):I.play(14)}</button>${wave(20,true)}<span class="muted" style="font-size:13px">0:04</span></div>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;gap:8px"><span class="muted" style="font-size:13px">Прослушайте перед отправкой</span><span class="chipw">Синтетический голос (ИИ)</span></div></div>`
-  : `<div class="card" style="padding:12px 14px;background:var(--ink)"><div class="lab">Уйдёт в WhatsApp</div><div style="font-size:15px;line-height:1.45;margin-top:6px">${EX.outEs}<br><br><span class="muted">${EX.sig}</span></div>
-      <div class="muted" style="font-size:13px;line-height:1.4;margin-top:8px">Подпись можно стереть в WhatsApp или выключить в Настройках.</div></div>`;
-  return `${status()}<div class="wa"></div><div class="dim" style="top:62px"></div>
-  <div class="sheet" style="top:72px">
+    <div class="card" style="padding:12px 14px;background:var(--ink)"><div class="vplayer"><button class="pl" style="background:var(--green);color:var(--ink)" data-act="play" aria-label="Прослушать">${st.playing?I.pause(14):I.play(14)}</button>${wave(20,true)}<span class="muted" style="font-size:13px">${st.playing?'0:01 / 0:04':'0:04'}</span></div>
+      ${aiLabel()}
+      <div class="muted" style="font-size:13px;line-height:1.4;margin-top:6px">Файл: ${FILE_ES}<br>Подпись в сообщении: ${AI_ES}</div></div>`
+  : `<div class="card" style="padding:12px 14px;background:var(--ink)"><div class="lab">Уйдёт в сообщении</div><div style="font-size:15px;line-height:1.45;margin-top:6px">${EX.outEs}<br><br><span class="muted">${EX.sig}</span></div>
+      <div class="muted" style="font-size:13px;line-height:1.4;margin-top:8px">Подпись можно стереть перед отправкой или выключить в Настройках.</div></div>`;
+  return sheetBg()+`<div class="sheet" style="top:72px">
     <div class="grab"></div>
     <div class="shead"><button class="l" data-go="wa-08-out-dictate">Назад</button><span class="c" style="font-size:17px;font-weight:600">Ответ для Lucía</span><span class="r"></span></div>
     <div class="scroll">
       <div class="card"><div class="lab">Вы сказали · русский</div><div style="font-size:15px;line-height:1.4;margin-top:4px" class="muted">${EX.outRu}</div>
         <div class="lab" style="color:var(--green);margin-top:12px">Перевод · español</div><div class="big" style="margin-top:6px;font-size:21px">${EX.outEs}</div>${example}</div>
-      <div class="lab" style="margin-top:2px">Как отправить</div>
+      ${v?'':`<div class="lab" style="margin-top:2px">Как отправить</div>`}
       <div class="seg"><button class="${v?'':'on'}" data-act="mode" data-v="text">${I.text}Текстом</button><button class="${v?'on':''}" data-act="mode" data-v="voice">${I.wave}Голосом</button></div>
       ${opts}
     </div>
-    <div class="foot"><button class="btn primary" data-act="send">${I.share(20)}Отправить в WhatsApp</button></div>
+    <div class="foot"><button class="btn primary" data-act="send">${I.share(20)}${sendLabel()}</button></div>
   </div>`;
 }
 function chatPicker(){
@@ -422,23 +475,23 @@ function chatPicker(){
 function shareSheetOut(){
   st.mode='voice';
   return sendScreen() + `<div class="dim" style="z-index:11"></div><div class="ios" style="z-index:12">
-    <div class="hd"><span class="fic" style="background:var(--successBg);color:var(--green)">${I.wave}</span><div><div class="t">Ответ для Lucía.m4a</div><div class="d">Аудиофайл · 0:04 · Синтетический голос (ИИ)</div></div><span class="x">${I.close}</span></div>
+    <div class="hd"><span class="fic" style="background:var(--successBg);color:var(--green)">${I.wave}</span><div style="min-width:0"><div class="t">${FILE_ES}</div><div class="d">Аудиофайл · 0:04 + текст «${AI_ES}»</div></div><span class="x">${I.close}</span></div>
     <div class="apps">
-      <button class="app hl" data-go="wa-14-out-result"><span class="ic">WA</span>WhatsApp</button>
-      <div class="app"><span class="ic">${I.bubble}</span>Сообщения</div>
+      <button class="app hl" data-go="wa-14-out-result"><span class="ic">${I.msgr}</span>WhatsApp</button>
+      <div class="app"><span class="ic">${I.mail}</span>Почта</div>
       <div class="app"><span class="ic">${I.file}</span>Файлы</div>
       <div class="app"><span class="ic">${I.dots}</span>Ещё</div>
     </div>
     <div class="acts"><div>Сохранить в Файлы ${I.file}</div></div>
-    <div class="syslabel">Системный лист iOS «Поделиться» · дальше — выбор чата в WhatsApp</div>
-  </div><i class="tap" style="left:27px;top:654px"></i>`;
+    <div class="syslabel">Системный лист iOS · значки — схема</div>
+  </div><i class="tap" style="left:27px;top:669px"></i>`;
 }
 function result(){
-  const asText = st.mode==='text' && !document.body.classList.contains('shot');
+  const asText = st.mode==='text' && !isShot();
   const out = asText
    ? `<div class="b out">${EX.outEs}<br><br><span style="color:#C7CED8">${EX.sig}</span><span class="tm">21:24</span></div>`
-   : `<div class="b out" style="width:300px"><div style="display:flex;align-items:center;gap:10px"><span style="width:44px;height:44px;border-radius:10px;background:#46566A;display:grid;place-items:center;flex:none">${I.file}</span><div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:600">Ответ для Lucía.m4a</div><div style="font-size:13px;color:#C7CED8">Аудиофайл · 0:04</div></div><span style="width:34px;height:34px;border-radius:17px;background:#46566A;display:grid;place-items:center;flex:none">${I.play(14)}</span></div><span class="tm">21:24</span></div>`;
-  return waChat(out + (asText?'':`<div style="align-self:stretch;margin-top:6px;display:flex;justify-content:center"><span class="chipw" style="font-size:13px;padding:6px 10px">Аудиофайл, а не голосовое — проверить App</span></div>`),{});
+   : `<div class="b out" style="width:300px"><div style="display:flex;align-items:center;gap:10px"><span style="width:44px;height:44px;border-radius:10px;background:#46566A;display:grid;place-items:center;flex:none">${I.file}</span><div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:600;line-height:1.3">${FILE_ES}</div><div style="font-size:13px;color:#C7CED8">Аудиофайл · 0:04</div></div><span style="width:34px;height:34px;border-radius:17px;background:#46566A;display:grid;place-items:center;flex:none">${I.play(14)}</span></div><div style="font-size:15px;margin-top:8px">${AI_ES}</div><span class="tm">21:24</span></div>`;
+  return waChat(out + (asText?'':`<div style="align-self:stretch;margin-top:6px;display:flex;justify-content:center"><span class="chipw" style="font-size:13px;padding:6px 10px">Файл, не голосовое; подпись — проверить App</span></div>`),{});
 }
 function render(){
   const sc=$('#screen'); let h='';
@@ -448,6 +501,8 @@ function render(){
     case 'wa-03-empty-tip': h=emptyTip(); break;
     case 'wa-04-in-longpress': h=longpress(); break;
     case 'wa-05-in-sharesheet': h=shareSheetIn(); break;
+    case 'wa-05a-in-first-run': h=firstRun(); break;
+    case 'wa-05b-in-consent-needed': h=consentNeeded(); break;
     case 'wa-06-in-sheet-voice': h=parrloSheet('voice'); break;
     case 'wa-07-in-sheet-text': h=parrloSheet('text'); break;
     case 'wa-08-out-dictate': h=dictate(); break;
@@ -460,7 +515,7 @@ function render(){
   fit();
 }
 function fit(){
-  if (document.body.classList.contains('shot')) return;
+  if (isShot()) return;
   const b=$('#bezel'); const H=window.innerHeight-40; const hh=b.offsetHeight; const s=Math.min(1,H/hh);
   b.style.transform=`scale(${s})`; b.parentElement.style.height=(hh*s+10)+'px';
 }
@@ -473,17 +528,19 @@ function nav(){
   $('#nav').innerHTML=h;
 }
 function notes(){
-  const sw = ['wa-09-out-text','wa-10-out-myvoice','wa-11-out-stdvoice'].includes(cur.id)
-   ? `<div class="ctrl"><button data-act="mode" data-v="text" class="${st.mode==='text'?'on':''}">Текстом</button><button data-act="voiceGo" data-v="mine" class="${st.mode==='voice'&&st.voice==='mine'&&cur.id!=='wa-11-out-stdvoice'?'on':''}">Голосом · «Мой голос»</button><button data-act="voiceGo" data-v="std" class="${st.mode==='voice'&&(st.voice==='std'||cur.id==='wa-11-out-stdvoice')?'on':''}">Голосом · стандартный</button></div>` : '';
+  const sendIds=['wa-09-out-text','wa-10-out-myvoice','wa-11-out-stdvoice'];
+  const sw = sendIds.includes(cur.id)
+   ? `<div class="ctrl"><button data-act="mode" data-v="text" class="${st.mode==='text'?'on':''}">Текстом</button><button data-act="voiceGo" data-v="std" class="${st.mode==='voice'?'on':''}">Голосом · стандартный</button><button data-go="wa-10-out-myvoice" class="${cur.id==='wa-10-out-myvoice'?'on':''}">«Мой голос» — скоро (неактивен)</button></div>
+      <div class="ctrl"><button data-act="waInst" class="${st.waInstalled?'on':''}">Вариант: WhatsApp установлен → «Отправить в WhatsApp»</button></div>` : '';
   $('#notes').innerHTML=`<h3>${cur.t}</h3>${cur.n}${sw}<div class="ctrl"><button data-act="reset">Сбросить экран</button></div><p style="margin-top:10px">Все переводы и голоса в прототипе — заготовленные примеры. Кадр отдельно: <code>?shot=${cur.id}</code></p>`;
 }
-const PRE={'wa-09-out-text':{mode:'text'},'wa-10-out-myvoice':{mode:'voice',voice:'mine'},'wa-11-out-stdvoice':{mode:'voice',voice:'std'},'wa-14-out-result':{mode:'voice'}};
+const PRE={'wa-09-out-text':{mode:'text'},'wa-10-out-myvoice':{mode:'voice'},'wa-11-out-stdvoice':{mode:'voice'},'wa-13-out-handoff-voice':{mode:'voice'},'wa-14-out-result':{mode:'voice'}};
 function go(id,keep){
   cur=S.find(s=>s.id===id)||S[1];
   const prev=st;
   st=Object.assign({},BASE,PRE[id]||{});
-  if (keep && prev && id==='wa-14-out-result') st.mode=prev.mode;
-  if (!document.body.classList.contains('shot')) history.replaceState(null,'','#'+cur.id);
+  if (keep && prev){ st.waInstalled=prev.waInstalled; if (id==='wa-14-out-result') st.mode=prev.mode; }
+  if (!isShot()) history.replaceState(null,'','#'+cur.id);
   nav(); notes(); render();
 }
 document.addEventListener('click',e=>{
@@ -494,18 +551,24 @@ document.addEventListener('click',e=>{
     case 'hideHint': st.hint=false; break;
     case 'play': st.playing=!st.playing; break;
     case 'copied': flash('Перевод скопирован'); return;
-    case 'mode': if (v==='text') { go('wa-09-out-text'); return; } go(st.voice==='std'||cur.id==='wa-11-out-stdvoice'?'wa-11-out-stdvoice':'wa-10-out-myvoice'); return;
-    case 'voice': if (cur.id==='wa-11-out-stdvoice' && v==='mine'){ flash('Прототип: откроется согласие «Мой голос»'); return; } go(v==='mine'?'wa-10-out-myvoice':'wa-11-out-stdvoice'); return;
-    case 'voiceGo': go(v==='mine'?'wa-10-out-myvoice':'wa-11-out-stdvoice'); return;
-    case 'send': if (st.mode==='text') { const m=st.mode; go('wa-12-out-handoff-text'); st.mode=m; } else go('wa-13-out-handoff-voice'); return;
+    case 'privacy': flash('Прототип: откроется Политика конфиденциальности'); return;
+    case 'consent': flash('Прототип: экран согласия #268 (как его открыть из расширения — решение App)'); return;
+    case 'waInst': st.waInstalled=!st.waInstalled; notes(); break;
+    case 'mode': { const w=st.waInstalled; go(v==='text'?'wa-09-out-text':'wa-11-out-stdvoice'); st.waInstalled=w; notes(); render(); return; }
+    case 'voice': case 'voiceGo': { const w=st.waInstalled; go('wa-11-out-stdvoice'); st.waInstalled=w; notes(); render(); return; }
+    case 'send': { const w=st.waInstalled;
+      if (st.mode==='text') { go(w?'wa-12-out-handoff-text':'wa-12-out-handoff-text'); st.mode='text'; if(!w) flash('Без WhatsApp: системный лист «Поделиться» → выбор приложения'); }
+      else go('wa-13-out-handoff-voice');
+      st.waInstalled=w; return; }
     case 'reset': go(cur.id); return;
   }
   render();
 });
-function flash(msg){ const n=document.createElement('div'); n.className='proto'; n.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:99'; n.textContent=msg; document.body.appendChild(n); setTimeout(()=>n.remove(),1800); }
+function flash(msg){ const n=document.createElement('div'); n.className='proto'; n.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:99'; n.textContent=msg; document.body.appendChild(n); setTimeout(()=>n.remove(),2200); }
 window.addEventListener('resize',fit);
 const q=new URLSearchParams(location.search);
 if (q.get('shot')) document.body.classList.add('shot');
+if (q.get('wa')==='1') BASE.waInstalled=true;
 go(q.get('shot') || location.hash.slice(1) || 'wa-01-home-card');
 </script>
 </body>
