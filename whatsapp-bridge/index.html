@@ -278,9 +278,9 @@ const S=[
  {id:'wa-05-in-sharesheet',t:'05 · Системный лист «Поделиться»',d:'«Перевести в Parrlo»',
   n:`<p>Системный лист iOS. Расширение называется «Перевести в Parrlo» (RG: название ок, без WhatsApp). Голосовое приходит <b>аудиофайлом .opus</b>.</p><p><span class="tag now">Сейчас</span><br>Расширение уже принимает аудио (в т.ч. .opus/.ogg) и текст.</p>`},
  {id:'wa-05a-in-first-run',t:'05a · Первый запуск расширения',d:'лист RG 6.3, один раз',
-  n:`<span class="tag new">По RG 6.3</span><p>Показывается один раз при первом использовании расширения. Это уведомление, а не согласие: текст, заголовок и кнопки — RG 6.3 дословно. Возраст — 16+.</p><p>Если согласия на облачный перевод (#268) нет — дальше экран 05b, ничего не отправляется.</p>`},
+  n:`<span class="tag new">По RG 6.3</span><p>Показывается один раз при первом использовании расширения. Это уведомление, а не согласие: текст, заголовок и кнопки — RG 6.3 дословно, срок удаления — финальная правка RG («не позднее часа после перевода»). Возраст — 16+.</p><p>Если согласия на облачный перевод (#268) нет — дальше экран 05b, ничего не отправляется.</p>`},
  {id:'wa-05b-in-consent-needed',t:'05b · «Нужно ваше разрешение»',d:'нет согласия #268 → не отправляем',
-  n:`<span class="tag chk">Текст — черновик</span><p>Заголовок «Нужно ваше разрешение» — из RG (§3, 5.1.2(i)). Основного текста в RG нет: взята строка из кода (черновик для RG). До согласия ничего не уходит на сервер.</p><p><span class="tag new">По App</span><br>«Открыть Parrlo» открывает приложение сразу на экране согласия #268 (URL-схема приложения). Файл <b>не сохраняется</b> и ничего не отправляется; после согласия пользователь делится сообщением ещё раз.</p>`},
+  n:`<span class="tag new">Текст RG (финал)</span><p>Заголовок, текст и кнопки «Открыть Parrlo» / «Отмена» — финальные тексты RG дословно. До согласия ничего не уходит на сервер.</p><p><span class="tag new">По App</span><br>«Открыть Parrlo» открывает приложение сразу на экране согласия #268 (URL-схема приложения). Файл <b>не сохраняется</b> и ничего не отправляется; после согласия пользователь делится сообщением ещё раз.</p>`},
  {id:'wa-05c-ext-handoff',t:'05c · Расширение → Parrlo',d:'«Открываю Parrlo…»',
   n:`<span class="tag new">По App</span><p>Расширение только передаёт сообщение в приложение и открывает Parrlo. В расширении нет микрофона, перевода, рекламы и покупок.</p><p>Если iOS не открыла Parrlo сама — кнопка «Открыть Parrlo» и короткая подсказка.</p><p><span class="tag chk">Проверить App</span><br>Как именно расширение открывает приложение (iOS это ограничивает) — решение App.</p>`},
  {id:'wa-06-in-sheet-voice',t:'06 · Parrlo: «Из WhatsApp», голосовое',d:'экран приложения · слушать',
@@ -288,7 +288,7 @@ const S=[
  {id:'wa-06n-offline',t:'06n · «Из WhatsApp»: нет сети',d:'«Повторить»',
   n:`<span class="tag new">По App</span><p>Распознавание, перевод и озвучка требуют сети; офлайн-режима нет. Экран ничего не обещает о хранении файла — только «Повторить».</p>`},
  {id:'wa-06l-tts-limit',t:'06l · Длинный перевод: озвучки нет',d:'> 2000 символов',
-  n:`<span class="tag chk">Текст — плейсхолдер</span><p>Перевод длиннее 2000 символов (~1–1,5 мин речи) не озвучиваем: «Слушать перевод» неактивна, короткое пояснение. Текст пояснения даст RG.</p>`},
+  n:`<span class="tag new">Текст RG (финал)</span><p>Перевод длиннее 2000 знаков (~1–1,5 мин речи) не озвучиваем: «Слушать перевод» неактивна; пояснение — текст RG дословно.</p>`},
  {id:'wa-07-in-sheet-text',t:'07 · Parrlo: «Из WhatsApp», текст',d:'экран приложения · слушать',
   n:`<p>Экран приложения для текстового сообщения: оригинал и перевод, метка ИИ под плеером.</p>`},
  {sec:'b · Ответ из Parrlo'},
@@ -399,7 +399,7 @@ function firstRun(){
     <div class="scroll" style="padding:0 20px">
       <div style="display:flex;justify-content:center;margin:4px 0 2px">${parrot(72)}</div>
       <div style="font-family:Nunito;font-weight:900;font-size:24px;line-height:1.2;text-align:center">Перевод сообщений из других приложений</div>
-      <div style="font-size:16px;line-height:1.5;color:var(--text)">Голосовое или текст, которые вы отправляете сюда, в том числе от другого человека, уходят на наш сервер и сторонним сервисам распознавания речи и перевода (они могут быть в США) — только чтобы перевести. Parrlo удаляет файл сразу после перевода и не использует его для обучения. Чужой голос не используется для «Моего голоса». Делитесь только тем, что вправе передавать. Для пользователей от 16 лет. Подробнее — в Политике конфиденциальности.</div>
+      <div style="font-size:16px;line-height:1.5;color:var(--text)">Голосовое или текст, которые вы отправляете сюда, в том числе от другого человека, уходят на наш сервер и сторонним сервисам распознавания речи и перевода (они могут быть в США) — только чтобы перевести. Parrlo удаляет файл не позднее часа после перевода и не использует его для обучения. Чужой голос не используется для «Моего голоса». Делитесь только тем, что вправе передавать. Для пользователей от 16 лет. Подробнее — в Политике конфиденциальности.</div>
       <button class="lnk2" style="font-size:16px;min-height:44px" data-act="privacy">Политика конфиденциальности</button>
     </div>
     <div class="foot"><button class="btn primary" data-go="wa-05c-ext-handoff">Понятно</button>${isShot()?'':`<button class="btn ghost" style="height:40px;font-size:15px" data-go="wa-05b-in-consent-needed">Прототип: если согласия #268 нет →</button>`}</div>
@@ -412,11 +412,10 @@ function consentNeeded(){
     <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 28px;gap:14px">
       <span style="width:72px;height:72px;border-radius:36px;background:var(--card);display:grid;place-items:center;color:var(--text)">${I.lock}</span>
       <div style="font-family:Nunito;font-weight:900;font-size:26px;line-height:1.2">Нужно ваше разрешение</div>
-      <div style="font-size:16px;line-height:1.5">Нужно ваше согласие на отправку голоса и текста на сервер. Дайте его и поделитесь голосовым ещё&nbsp;раз.</div>
-      <span class="chipw" style="white-space:normal">Текст — черновик из кода, ждёт RG</span>
+      <div style="font-size:16px;line-height:1.5">Чтобы перевести сообщение, Parrlo отправляет его на свой сервер и сторонним сервисам распознавания речи и перевода. Вы ещё не разрешили облачный перевод — без него мы ничего не отправим.</div>
       <div class="muted" style="font-size:14px;line-height:1.45">«Открыть Parrlo» — сразу экран согласия. Голосовое не сохранено и не отправлено: после согласия поделитесь им ещё раз.</div>
     </div>
-    <div class="foot"><button class="btn primary" data-act="consent">Открыть Parrlo</button><button class="btn sec" data-go="wa-04-in-longpress">Не сейчас</button></div>
+    <div class="foot"><button class="btn primary" data-act="consent">Открыть Parrlo</button><button class="btn sec" data-go="wa-04-in-longpress">Отмена</button></div>
   </div>`;
 }
 function listenBtn(){
@@ -465,12 +464,11 @@ function ttsLimit(){
     ${srcLine(false)}
     <div class="scroll">
       <div class="card" style="padding:12px 16px"><div class="lab">Оригинал · испанский</div><div class="mid muted" style="margin-top:6px;font-size:15px">${LONG_ES}</div></div>
-      <div class="card" style="border:1px solid #24403A"><div class="lab" style="color:var(--green)">Перевод · русский · больше 2000 символов</div>
+      <div class="card" style="border:1px solid #24403A"><div class="lab" style="color:var(--green)">Перевод · русский · больше 2000 знаков</div>
         <div class="longtxt" style="margin-top:8px;max-height:226px;font-size:16px;line-height:1.45">${LONG_RU}</div>
         <button class="lnk2" style="font-size:15px">Показать полностью</button>
         <div class="listen dis" aria-disabled="true" style="margin-top:8px"><span class="pl">${I.play(14)}</span>Слушать перевод</div>
-        <div class="muted" style="font-size:13px;line-height:1.4;margin-top:8px">Озвучка доступна для текста до 2000 символов.</div>
-        <div style="margin-top:8px"><span class="chipw">Плейсхолдер — текст даст RG</span></div>
+        <div class="muted" style="font-size:13px;line-height:1.4;margin-top:8px">Озвучиваем тексты до 2000 знаков. Этот перевод длиннее — можно скопировать или отправить текстом.</div>
         ${example}</div>
     </div>
     <div class="foot"><button class="btn sec" data-act="copied">${I.copy}Скопировать перевод</button></div>
