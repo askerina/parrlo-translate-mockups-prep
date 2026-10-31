@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Parrlo — мост с WhatsApp · макеты</title>
+<style>
+@font-face{font-family:Inter;src:url(../keyboard/fonts/Inter-Variable.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:Nunito;src:url(../keyboard/fonts/Nunito-Variable.woff2) format("woff2");font-weight:200 1000;font-display:swap}
+:root{
+  --bg:#12161C; --surface:#1C2026; --ink:#0E1116; --green:#2BC48A; --brand:#00A86B; --deep:#00875C;
+  --text:#E8ECF1; --text2:#9AA4B2; --card:#242B34; --line:#2E3540;
+  --warn:#FFC247; --warnBg:#3C372B; --successBg:#1E3734;
+  --waBg:#15181D; --waHead:#1B1F25; --waIn:#262B32; --waOut:#33404D;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#0A0C10;color:var(--text);font-family:Inter,system-ui,sans-serif}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:inherit}
+/* ---------- page shell ---------- */
+.page{display:grid;grid-template-columns:300px 1fr 320px;gap:24px;min-height:100vh;padding:20px}
+.side h1{font-family:Nunito;font-weight:900;font-size:28px;line-height:1.1;margin-bottom:4px}
+.side h1 .rr{color:var(--brand)}
+.side .sub{color:var(--text2);font-size:14px;line-height:1.4;margin-bottom:12px}
+.proto{display:inline-block;background:var(--warnBg);color:var(--warn);font-size:13px;font-weight:600;padding:6px 10px;border-radius:10px;margin-bottom:12px;line-height:1.35}
+.nav h2{font-family:Nunito;font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);margin:16px 0 6px}
+.nav button{display:block;width:100%;text-align:left;padding:8px 10px;border-radius:10px;font-size:14px;line-height:1.3;color:var(--text)}
+.nav button small{display:block;color:var(--text2);font-size:12px}
+.nav button:hover{background:#1C2026}
+.nav button.on{background:var(--successBg);color:var(--green)}
+.stage{display:flex;align-items:flex-start;justify-content:center;padding-top:8px}
+.notes{font-size:14px;line-height:1.5;color:var(--text2)}
+.notes h3{font-family:Nunito;font-weight:900;font-size:20px;color:var(--text);margin-bottom:8px;line-height:1.2}
+.notes p{margin-bottom:10px}
+.notes b{color:var(--text)}
+.notes .tag{display:inline-block;font-size:12px;font-weight:700;padding:3px 8px;border-radius:8px;margin-bottom:8px}
+.tag.now{background:#1E2B3A;color:#8FC1FF}.tag.new{background:var(--successBg);color:var(--green)}.tag.chk{background:var(--warnBg);color:var(--warn)}
+.ctrl{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px}
+.ctrl button{border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px}
+.ctrl button.on{border-color:var(--green);color:var(--green)}
+.bezel{padding:12px;border-radius:66px;background:#2A2F37;box-shadow:0 0 0 2px #3A404A inset,0 30px 80px rgba(0,0,0,.5);transform-origin:top center}
+/* ---------- device screen 402×874 ---------- */
+.screen{position:relative;overflow:hidden;background:var(--bg);width:402px;height:874px;border-radius:54px;display:flex;flex-direction:column}
+body.shot{background:var(--bg)}
+body.shot .page{display:block;padding:0}
+body.shot .side,body.shot .notes{display:none}
+body.shot .stage{padding:0;display:block}
+body.shot .bezel{padding:0;border-radius:0;box-shadow:none;background:none;transform:none!important}
+body.shot .screen{border-radius:0}
+.status{flex:none;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 34px 0 44px;font-weight:600;font-size:17px;position:relative;z-index:5}
+.status .island{position:absolute;left:50%;top:11px;width:126px;height:37px;margin-left:-63px;background:#000;border-radius:20px}
+.status .icons{display:flex;gap:6px;align-items:center}
+.homebar{position:absolute;left:50%;bottom:8px;width:140px;height:5px;margin-left:-70px;border-radius:3px;background:#E8ECF1;opacity:.85;z-index:20}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;position:relative}
+/* ---------- Parrlo components ---------- */
+.wm{font-family:Nunito;font-weight:900;font-size:26px;letter-spacing:-.01em;line-height:1}
+.wm .rr{color:var(--brand)}
+.apphead{flex:none;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+.rbtns{display:flex;gap:8px}
+.rb{width:44px;height:44px;border-radius:22px;background:var(--surface);display:grid;place-items:center;color:var(--text)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;height:52px;border-radius:14px;font-size:17px;font-weight:600;width:100%;line-height:1.2;text-align:center}
+.btn.primary{background:var(--green);color:var(--ink)}
+.btn.sec{background:var(--card);color:var(--text)}
+.btn.ghost{color:var(--green)}
+.btn.sm{height:44px;font-size:15px;border-radius:12px;width:auto;padding:0 16px}
+.card{background:var(--surface);border-radius:20px;padding:16px}
+.lab{font-size:13px;font-weight:600;color:var(--text2);letter-spacing:.02em;display:flex;align-items:center;gap:6px}
+.chipx{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;padding:3px 8px;border-radius:8px;background:var(--successBg);color:var(--green)}
+.chipw{white-space:nowrap;flex:none;display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;padding:4px 8px;border-radius:8px;background:var(--warnBg);color:var(--warn);line-height:1.3}
+.example{font-size:12px;color:var(--text2);display:flex;gap:6px;align-items:center;margin-top:10px}
+.example i{width:6px;height:6px;border-radius:3px;background:var(--warn);flex:none}
+.big{font-size:22px;line-height:1.35;font-weight:600}
+.mid{font-size:17px;line-height:1.4}
+.muted{color:var(--text2)}
+.listen{display:flex;align-items:center;gap:10px;margin-top:14px;height:44px;border-radius:22px;border:1.5px solid var(--green);color:var(--green);padding:0 16px 0 6px;font-size:15px;font-weight:600;width:max-content}
+.listen .pl{width:32px;height:32px;border-radius:16px;background:var(--green);color:var(--ink);display:grid;place-items:center}
+.listen .prog{width:90px;height:4px;border-radius:2px;background:#2E3B39;overflow:hidden}
+.listen .prog b{display:block;height:100%;width:40%;background:var(--green)}
+.vplayer{display:flex;align-items:center;gap:10px}
+.vplayer .pl{width:36px;height:36px;border-radius:18px;background:var(--card);display:grid;place-items:center;color:var(--text);flex:none}
+.wave{display:flex;align-items:center;gap:2px;height:28px;flex:1}
+.wave i{display:block;width:3px;border-radius:2px;background:#6B7684}
+.wave.g i{background:var(--green)}
+.seg{display:flex;background:var(--ink);border-radius:12px;padding:3px;gap:3px}
+.seg button{flex:1;height:40px;border-radius:9px;font-size:15px;font-weight:600;color:var(--text2);display:flex;align-items:center;justify-content:center;gap:6px}
+.seg button.on{background:var(--card);color:var(--text)}
+.opt{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:var(--ink);border:1.5px solid transparent;width:100%;min-height:64px}
+.opt.on{border-color:var(--green)}
+.opt .rad{width:22px;height:22px;border-radius:11px;border:2px solid #8E98A6;flex:none;display:grid;place-items:center}
+.opt.on .rad{border-color:var(--green)}
+.opt.on .rad::after{content:"";width:11px;height:11px;border-radius:6px;background:var(--green)}
+.opt .t{font-size:16px;font-weight:600;line-height:1.3}
+.opt .d{font-size:13px;color:var(--text2);line-height:1.35}
+.opt.dis .t{color:var(--text2)}
+.opt .lnk{margin-left:auto;color:var(--green);font-size:14px;font-weight:600;flex:none}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--bg);border-radius:14px 14px 0 0;display:flex;flex-direction:column;z-index:10;box-shadow:0 -10px 40px rgba(0,0,0,.5)}
+.grab{width:36px;height:5px;border-radius:3px;background:#4A525E;margin:6px auto 0;flex:none}
+.shead{flex:none;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;position:relative}
+.shead .l{color:var(--green);font-size:17px;font-weight:500;min-width:80px}
+.shead .r{min-width:80px;text-align:right}
+.shead .c{position:absolute;left:50%;transform:translateX(-50%)}
+.dim{position:absolute;inset:0;background:rgba(0,0,0,.55);z-index:9}
+.src{font-size:14px;color:var(--text2);display:flex;align-items:center;gap:8px;padding:0 20px 10px}
+.foot{flex:none;padding:12px 20px 34px;display:flex;flex-direction:column;gap:10px}
+.scroll{flex:1;min-height:0;overflow:hidden;padding:0 16px;display:flex;flex-direction:column;gap:12px}
+.parrot{border-radius:50%;flex:none}
+/* ---------- messenger schematic ---------- */
+.wa{background:var(--waBg);flex:1;display:flex;flex-direction:column;min-height:0;position:relative}
+.walabel{flex:none;align-self:center;margin:2px 0 6px;font-size:12px;font-weight:600;color:#C7CED8;background:#2A2F37;border-radius:8px;padding:3px 10px;border:1px dashed #5A6472}
+.wahead{flex:none;height:54px;display:flex;align-items:center;gap:10px;padding:0 14px;background:var(--waHead);border-bottom:1px solid #262B33}
+.wahead .chev{font-size:30px;color:var(--text2);line-height:1;width:16px}
+.ava{width:36px;height:36px;border-radius:50%;background:#3A4250;display:grid;place-items:center;font-weight:700;font-size:15px;flex:none}
+.wahead .nm{font-weight:600;font-size:16px}
+.wahead .st{font-size:12px;color:var(--text2)}
+.wachat{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;padding:12px 12px 12px}
+.b{max-width:80%;padding:8px 12px;border-radius:16px;font-size:16px;line-height:1.35;position:relative}
+.b .tm{display:block;font-size:11px;color:#AEB6C1;text-align:right;margin-top:2px}
+.b.in{align-self:flex-start;background:var(--waIn);border-bottom-left-radius:5px}
+.b.out{align-self:flex-end;background:var(--waOut);border-bottom-right-radius:5px}
+.b.voice{width:260px}
+.b.sel{box-shadow:0 0 0 2px #E8ECF1;z-index:10}
+.wainput{flex:none;height:56px;display:flex;align-items:center;gap:10px;padding:0 12px 0;background:var(--waHead);margin-bottom:28px}
+.wainput .f{flex:1;height:38px;border-radius:19px;background:#262B32;color:var(--text2);font-size:15px;display:flex;align-items:center;padding:0 14px}
+.ctx{position:absolute;left:12px;width:230px;background:#2A2F37;border-radius:14px;overflow:hidden;font-size:16px;z-index:11;box-shadow:0 12px 40px rgba(0,0,0,.6)}
+.ctx div{padding:12px 16px;border-bottom:1px solid #383F4A;display:flex;justify-content:space-between;align-items:center}
+.ctx div:last-child{border:0}
+.ctx .hl{background:#3A4350}
+.tap{position:absolute;width:44px;height:44px;border-radius:22px;border:3px solid rgba(232,236,241,.9);background:rgba(232,236,241,.18);z-index:12;pointer-events:none}
+/* iOS share sheet (system) */
+.ios{position:absolute;left:0;right:0;bottom:0;background:#1E2227;border-radius:14px 14px 0 0;z-index:10;padding-bottom:34px}
+.ios .hd{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #2E343C}
+.ios .fic{width:44px;height:44px;border-radius:10px;background:#2E343C;display:grid;place-items:center;color:var(--text);flex:none}
+.ios .hd .t{font-size:15px;font-weight:600;line-height:1.3}
+.ios .hd .d{font-size:13px;color:var(--text2);line-height:1.3}
+.ios .x{margin-left:auto;width:30px;height:30px;border-radius:15px;background:#2E343C;display:grid;place-items:center;color:var(--text2);flex:none}
+.apps{display:flex;gap:14px;padding:16px 16px 14px;border-bottom:1px solid #2E343C}
+.app{width:66px;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:var(--text);text-align:center;line-height:1.25}
+.app .ic{width:60px;height:60px;border-radius:15px;background:#3A414B;display:grid;place-items:center;color:#C7CED8;font-weight:700;font-size:13px;position:relative}
+.app.hl .ic{box-shadow:0 0 0 3px var(--bg),0 0 0 5px #E8ECF1}
+.acts{margin:12px 16px 0;background:#262B32;border-radius:12px;overflow:hidden}
+.acts div{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;font-size:16px;border-bottom:1px solid #323943}
+.acts div:last-child{border:0}
+.syslabel{font-size:12px;color:var(--text2);text-align:center;padding:8px 0 0}
+/* home */
+.hint{margin:4px 16px 0;background:var(--surface);border-radius:20px;padding:16px;display:flex;gap:14px;position:relative;border:1px solid #24403A}
+.hint .x{position:absolute;right:8px;top:8px;width:36px;height:36px;display:grid;place-items:center;color:var(--text2)}
+.hint h4{font-size:17px;line-height:1.3;font-weight:700;margin:6px 34px 6px 0}
+.hint p{font-size:14px;line-height:1.45;color:var(--text2)}
+.flowmini{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--text);margin-top:10px;flex-wrap:wrap}
+.flowmini span{background:var(--ink);border-radius:8px;padding:4px 8px}
+.flowmini em{font-style:normal;color:var(--text2)}
+.mics{display:flex;gap:14px;padding:0 20px}
+.mic{flex:1;height:132px;border-radius:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:15px;font-weight:600}
+.mic .c{width:64px;height:64px;border-radius:32px;display:grid;place-items:center}
+.mic.me{background:var(--successBg)} .mic.me .c{background:var(--green);color:var(--ink)}
+.mic.th{background:var(--surface)} .mic.th .c{background:var(--card);color:var(--text)}
+.txtbtn{align-self:center;display:flex;align-items:center;gap:6px;height:44px;padding:0 16px;border-radius:22px;background:var(--surface);font-size:15px;font-weight:600}
+/* onboarding */
+.step{display:flex;gap:14px;align-items:flex-start}
+.step .n{width:36px;height:36px;border-radius:18px;background:var(--green);color:var(--ink);display:grid;place-items:center;font-weight:800;font-size:17px;flex:none;font-family:Nunito}
+.step h5{font-size:17px;font-weight:700;line-height:1.3;margin:6px 0 4px}
+.step p{font-size:15px;line-height:1.45;color:var(--text2)}
+.ill{margin-top:8px;background:var(--ink);border-radius:14px;padding:10px;display:flex;align-items:center;gap:8px;font-size:13px}
+.pillmini{background:#2A2F37;border-radius:8px;padding:5px 8px;font-weight:600;font-size:13px}
+.pillmini.hl{outline:2px solid var(--green);color:var(--green)}
+/* dictation */
+.listening{display:flex;flex-direction:column;align-items:center;gap:14px;padding:6px 0}
+.bigstop{width:84px;height:84px;border-radius:42px;background:var(--green);color:var(--ink);display:grid;place-items:center;box-shadow:0 0 0 10px rgba(43,196,138,.15),0 0 0 22px rgba(43,196,138,.07)}
+.caret{display:inline-block;width:2px;height:22px;background:var(--green);vertical-align:-4px;margin-left:2px}
+</style>
+</head>
+<body>
+<div class="page">
+  <aside class="side">
+    <h1>Pa<span class="rr">rr</span>lo · WhatsApp</h1>
+    <div class="sub">Мост «WhatsApp → Parrlo → WhatsApp» для iOS-приложения Parrlo Translate. iPhone 17 (402×874), тёмная тема, бренд v2.3. Только макеты, кода приложения здесь нет.</div>
+    <div class="proto">Прототип: переводы заранее заготовлены</div>
+    <nav class="nav" id="nav"></nav>
+  </aside>
+  <main class="stage"><div class="bezel" id="bezel"><div class="screen" id="screen"></div></div></main>
+  <aside class="notes" id="notes"></aside>
+</div>
+<script>
+const $=s=>document.querySelector(s);
+const PARROT='../keyboard/parrlo-a.svg';
+const I={
+ sig:'<svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>',
+ wifi:'<svg width="17" height="12" viewBox="0 0 17 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 4.2a11 11 0 0 1 15 0M3.6 7a7 7 0 0 1 9.8 0"/><circle cx="8.5" cy="10" r="1.3" fill="currentColor" stroke="none"/></svg>',
+ bat:'<svg width="27" height="13" viewBox="0 0 27 13" fill="none"><rect x=".5" y=".5" width="23" height="12" rx="3.5" stroke="currentColor" opacity=".5"/><rect x="2" y="2" width="18" height="9" rx="2" fill="currentColor"/><rect x="25" y="4.5" width="1.6" height="4" rx=".8" fill="currentColor" opacity=".5"/></svg>',
+ mic:(s=22)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>`,
+ play:(s=16)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>`,
+ pause:(s=16)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>`,
+ stop:'<svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2.5"/></svg>',
+ close:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+ copy:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>',
+ share:(s=20)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>`,
+ fwd:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 5l7 7-7 7M21 12H9a6 6 0 0 0-6 6"/></svg>',
+ reply:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5l-7 7 7 7M3 12h12a6 6 0 0 1 6 6"/></svg>',
+ clock:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+ sliders:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>',
+ qr:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h2v2M20 14v6h-6v-2"/></svg>',
+ text:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 6h14M12 6v13M8 19h8"/></svg>',
+ wave:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg>',
+ file:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M10 12v5M13 11v7" stroke-linecap="round"/></svg>',
+ search:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>',
+ chev:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>',
+ bubble:'<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg>',
+ dots:'<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18" cy="12" r="2"/></svg>',
+ check:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>',
+};
+/* ---------- заготовленные примеры (RU ↔ ES, собеседник на «tú») ---------- */
+const EX={
+  inVoiceEs:'Hola, ¿a qué hora llegas mañana? Te espero en la estación.',
+  inVoiceRu:'Привет! Во сколько ты завтра приедешь? Я жду тебя на вокзале.',
+  inTextEs:'¿Puedes traer el cargador del móvil?',
+  inTextRu:'Сможешь взять зарядку для телефона?',
+  outRu:'Приеду в 10:30. Встретимся у главного входа?',
+  outEs:'Llego a las 10:30. ¿Nos vemos en la entrada principal?',
+  sig:'Переведено ИИ в Parrlo · parrlo.com',
+};
+const WAVE=[6,10,16,9,20,24,14,8,18,26,22,12,7,15,21,11,6,13,19,9,5,10,17,12,7,4];
+const wave=(n=26,g)=>`<div class="wave${g?' g':''}">${WAVE.slice(0,n).map(h=>`<i style="height:${h}px"></i>`).join('')}</div>`;
+const status=()=>`<div class="status"><span>21:24</span><i class="island"></i><span class="icons">${I.sig}${I.wifi}${I.bat}</span></div>`;
+const parrot=s=>`<img class="parrot" src="${PARROT}" width="${s}" height="${s}" alt="Parrlo">`;
+const example=`<div class="example"><i></i>Пример: перевод заготовлен заранее</div>`;
+const wm=`<div class="wm">Pa<span class="rr">rr</span>lo</div>`;
+
+/* ---------- кадры ---------- */
+const S=[
+ {sec:'c · Как узнать о функции'},
+ {id:'wa-01-home-card',t:'01 · Карточка на главной',d:'«Переводите голосовые из WhatsApp»',
+  n:`<span class="tag new">Предлагается</span><p>Карточка над пустым экраном разговора. Показывается, пока пользователь ни разу не пересылал сообщение в Parrlo; <b>«Скрыть»</b> убирает навсегда. «Как это работает» → мини-обучение (02).</p><p><span class="tag now">Сейчас</span><br>Единственная подсказка про WhatsApp — строка на листе «Перевести текст»: «Напишите или вставьте текст — из WhatsApp, SMS или письма…». Про «Поделиться → Parrlo» в приложении не сказано нигде.</p>`},
+ {id:'wa-02-onboarding',t:'02 · Мини-обучение, 3 шага',d:'Поделиться → Parrlo → Ответить',
+  n:`<span class="tag new">Предлагается</span><p>Один экран, три шага. «Показать на примере» запускает поток (a) на заготовленном сообщении.</p><p><span class="tag chk">Проверить App</span><br>Названия пунктов в WhatsApp («Переслать», значок «Поделиться») зависят от версии WhatsApp — сверить на устройстве перед финальным текстом.</p>`},
+ {id:'wa-03-empty-tip',t:'03 · Совет в пустой «Истории»',d:'empty state',
+  n:`<span class="tag new">Предлагается</span><p>Пустая «История» объясняет второй способ получить перевод — из WhatsApp. Совет пропадает после первого перевода из WhatsApp.</p>`},
+ {sec:'a · Из WhatsApp в Parrlo'},
+ {id:'wa-04-in-longpress',t:'04 · Удержание сообщения',d:'WhatsApp (схема)',
+  n:`<p>Схема мессенджера, не интерфейс WhatsApp. Пользователь удерживает голосовое → «Переслать» → значок «Поделиться» (или «Поделиться» в меню — зависит от версии).</p><p>Нажмите «Переслать» в кадре.</p>`},
+ {id:'wa-05-in-sharesheet',t:'05 · Системный лист «Поделиться»',d:'Parrlo в ряду приложений',
+  n:`<p>Системный лист iOS. Голосовое WhatsApp приходит в расширение <b>аудиофайлом .opus</b> (Ogg Opus). Если Parrlo нет в ряду — «Ещё» → включить Parrlo (об этом шаг 2 обучения).</p><p><span class="tag now">Сейчас</span><br>Расширение «Поделиться» у Parrlo уже есть: принимает аудио (в т.ч. .opus/.ogg) и текст.</p>`},
+ {id:'wa-06-in-sheet-voice',t:'06 · Лист Parrlo: голосовое',d:'расшифровка · перевод · слушать',
+  n:`<span class="tag new">Предлагается</span><p>Лист поверх WhatsApp: расшифровка оригинала (ES), перевод (RU), «Слушать перевод» (озвучка перевода), «Ответить» → поток (b).</p><p><span class="tag now">Сейчас</span><br>Расширение только сохраняет файл и пишет «Откройте Parrlo — голосовое уже там» / «Нажмите «Готово» и откройте приложение с экрана «Домой»». Перевод, «Ответить», «Скопировать перевод», «Отправить в WhatsApp» — уже внутри приложения. Именно этот переход «закрыть → найти Parrlo» делает функцию неочевидной.</p><p><span class="tag chk">Решение App</span><br>Переводить прямо в листе (сеть и лимит памяти расширения) или оставить передачу в приложение. Перед первой отправкой чужого голосового действует уже согласованный диалог «Чужое голосовое → Parrlo» — здесь не перерисован.</p>`},
+ {id:'wa-07-in-sheet-text',t:'07 · Лист Parrlo: текст',d:'оригинал · перевод · слушать',
+  n:`<p>То же для текстового сообщения: расшифровки нет, показан оригинал и перевод.</p>`},
+ {sec:'b · Ответ из Parrlo в WhatsApp'},
+ {id:'wa-08-out-dictate',t:'08 · Диктовка ответа',d:'RU → ES',
+  n:`<p>«Ответить» открывает диктовку. Направление берётся из входящего: собеседник писал по-испански → ответ переводится на испанский.</p><p><span class="tag chk">Проверить App</span><br>Доступен ли микрофон в расширении «Поделиться» или ответ надо вести уже в приложении.</p>`},
+ {id:'wa-09-out-text',t:'09 · Отправить текстом',d:'перевод + видимая подпись',
+  n:`<p>Выбор «Текстом / Голосом». Текстом — уходит перевод; подпись «Переведено ИИ в Parrlo · parrlo.com» уже есть в коде (видимая, редактируется в WhatsApp, выключается в Настройках).</p><p>Переключайте «Текстом / Голосом» и голос прямо в кадре.</p>`},
+ {id:'wa-10-out-myvoice',t:'10 · Голосом: «Мой голос»',d:'ваш созданный голос',
+  n:`<span class="tag new">Предлагается</span><p>Голосом — озвученный перевод. «Мой голос» — голос пользователя, созданный в Parrlo (отдельное согласие, кадры 70–79 v5.3). Метка «Синтетический голос (ИИ)» — из кадра 75 v5.3, место метки не утверждено.</p><p><span class="tag now">Сейчас</span><br>Отправки голосового в WhatsApp в приложении нет — только текстом.</p>`},
+ {id:'wa-11-out-stdvoice',t:'11 · Голосом: стандартный',d:'«Мой голос» ещё не создан',
+  n:`<p>Если голос не создан — строка «Мой голос» неактивна, ссылка «Создать» ведёт на согласие «Мой голос». Там, где функция выключена (App Store-сборка), строку не показываем вовсе.</p>`},
+ {id:'wa-12-out-handoff-text',t:'12 · Текст → выбор чата',d:'WhatsApp (схема)',
+  n:`<p>Текст передаётся ссылкой WhatsApp без номера: WhatsApp открывает выбор чата, текст уже вписан и редактируется. Отправляет пользователь сам.</p>`},
+ {id:'wa-13-out-handoff-voice',t:'13 · Голос → лист «Поделиться»',d:'аудиофайл → WhatsApp',
+  n:`<p>Голос передаётся файлом через системный лист «Поделиться» (UIActivityViewController) → WhatsApp → выбор чата.</p><p><span class="tag chk">Проверить App</span><br>Формат файла (m4a / opus) и машиночитаемая метка ИИ.</p>`},
+ {id:'wa-14-out-result',t:'14 · Что увидит собеседник',d:'аудиофайл, не «голосовое»',
+  n:`<span class="tag chk">Проверить App</span><p>Аудио, отправленное через лист «Поделиться», в WhatsApp может прийти <b>аудиофайлом</b>, а не нативным голосовым (push-to-talk). Кадр показывает осторожный вариант. Подтвердить на устройстве с .m4a и .opus.</p>`},
+];
+const BASE={mode:'text',voice:'mine',playing:false,hint:true};
+let cur, st;
+
+function home(){
+  return `${status()}<div class="body">
+  <div class="apphead">${wm}<div class="rbtns"><span class="rb" aria-label="Пригласить собеседника">${I.qr}</span><span class="rb" aria-label="История">${I.clock}</span><span class="rb" aria-label="Настройки">${I.sliders}</span></div></div>
+  ${st.hint?`<div class="hint">${parrot(56)}<div style="flex:1;min-width:0"><span class="chipx">Новое</span>
+    <h4>Переводите голосовые из WhatsApp</h4>
+    <p>Перешлите сообщение в Parrlo — услышите перевод и сразу ответите. Можно своим голосом.</p>
+    <div class="flowmini"><span>Удержать</span><em>→</em><span>Поделиться</span><em>→</em><span>Parrlo</span></div>
+    <div style="display:flex;gap:8px;margin-top:14px"><button class="btn primary sm" data-go="wa-02-onboarding">Как это работает</button><button class="btn sec sm" data-act="hideHint">Скрыть</button></div>
+  </div><button class="x" aria-label="Скрыть" data-act="hideHint">${I.close}</button></div>`:''}
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:0 32px;text-align:center">
+    <div style="font-family:Nunito;font-weight:900;font-size:30px;line-height:1.15">Нажмите свою кнопку<br>и говорите</div>
+    <div class="muted" style="font-size:15px;line-height:1.4">Слева — вы по-русски, справа — собеседник по-испански</div>
+  </div>
+  <button class="txtbtn" style="margin-bottom:14px">${I.text}Текст</button>
+  <div class="mics" style="margin-bottom:44px"><div class="mic me"><span class="c">${I.mic(30)}</span>Я · русский</div><div class="mic th"><span class="c">${I.mic(30)}</span>Собеседник · español</div></div>
+  </div>`;
+}
+function onboarding(){
+  return `${status()}<div class="body">
+  <div class="shead"><span class="l"></span><span class="c">${wm}</span><button class="r" data-go="wa-01-home-card" aria-label="Закрыть"><span class="rb" style="margin-left:auto">${I.close}</span></button></div>
+  <div style="padding:6px 20px 0">
+    <div style="font-family:Nunito;font-weight:900;font-size:28px;line-height:1.15">Голосовые из WhatsApp — в три шага</div>
+    <div class="muted" style="font-size:15px;line-height:1.45;margin-top:8px">Не нужно переслушивать и переписывать: Parrlo расшифрует, переведёт и поможет ответить.</div>
+  </div>
+  <div style="padding:16px 20px 0;display:flex;flex-direction:column;gap:14px">
+    <div class="step"><span class="n">1</span><div style="flex:1"><h5>Удерживайте сообщение в WhatsApp</h5><p>Голосовое или текст → «Переслать» → значок «Поделиться».</p>
+      <div class="ill">${I.fwd}<span class="pillmini">Переслать</span><span class="muted">→</span>${I.share(18)}<span class="pillmini">Поделиться</span></div></div></div>
+    <div class="step"><span class="n">2</span><div style="flex:1"><h5>Выберите Parrlo</h5><p>Нет в списке? Пролистайте ряд приложений, нажмите «Ещё» и включите Parrlo.</p>
+      <div class="ill"><span class="pillmini hl" style="display:flex;align-items:center;gap:6px">${parrot(20)}Parrlo</span><span class="pillmini">Ещё</span></div></div></div>
+    <div class="step"><span class="n">3</span><div style="flex:1"><h5>Слушайте перевод и отвечайте</h5><p>Продиктуйте ответ по-русски — отправим в WhatsApp на испанском: текстом или голосом, в том числе вашим.</p>
+      <div class="ill">${I.play(14)}<span class="pillmini">Слушать перевод</span>${I.mic(16)}<span class="pillmini">Ответить</span></div></div></div>
+  </div>
+  <div class="foot" style="margin-top:auto;padding-top:8px;flex-direction:row"><button class="btn sec" style="flex:1" data-go="wa-01-home-card">Понятно</button><button class="btn primary" style="flex:1.5" data-go="wa-04-in-longpress">Показать на примере</button></div>
+  </div>`;
+}
+function emptyTip(){
+  return `${status()}<div class="body">
+  <div class="shead"><span class="l"></span><span class="c" style="font-size:17px;font-weight:600">История</span><button class="r" style="color:var(--green);font-size:17px;font-weight:600" data-go="wa-01-home-card">Готово</button></div>
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 32px;gap:12px">
+    ${parrot(104)}
+    <div style="font-family:Nunito;font-weight:900;font-size:26px;line-height:1.2;margin-top:6px">Пока пусто</div>
+    <div class="muted" style="font-size:16px;line-height:1.45">Здесь появятся ваши разговоры и переводы.</div>
+  </div>
+  <div class="card" style="margin:0 16px 48px;display:flex;gap:14px;align-items:flex-start">
+    <span style="width:44px;height:44px;border-radius:12px;background:var(--successBg);color:var(--green);display:grid;place-items:center;flex:none">${I.share(22)}</span>
+    <div style="flex:1;min-width:0"><div style="font-size:16px;font-weight:700;line-height:1.3">Совет: голосовые из WhatsApp</div>
+    <div class="muted" style="font-size:14px;line-height:1.45;margin-top:4px">Удерживайте сообщение → «Переслать» → «Поделиться» → Parrlo. Перевод появится здесь.</div>
+    <button style="color:var(--green);font-size:15px;font-weight:600;margin-top:10px;min-height:44px;display:flex;align-items:center;gap:4px" data-go="wa-02-onboarding">Как это работает ${I.chev}</button></div>
+  </div></div>`;
+}
+/* ---------- мессенджер (схема) ---------- */
+function waHead(){ return `<div class="walabel">WhatsApp (схема)</div><div class="wahead"><span class="chev">‹</span><div class="ava">L</div><div><div class="nm">Lucía</div><div class="st">в сети</div></div></div>`; }
+const voiceBubble=(sel,dur='0:12',tm='21:20',cls='in')=>`<div class="b ${cls} voice${sel?' sel':''}"><div class="vplayer"><span class="pl" style="background:#3A414B">${I.play(14)}</span>${wave(24)}<span style="font-size:13px;color:#C7CED8">${dur}</span></div><span class="tm">${tm}</span></div>`;
+function waChat(extra='',opts={}){
+  return `${status()}<div class="wa">${waHead()}<div class="wachat">
+    <div class="b in" style="opacity:${opts.dimOld?'.6':'1'}">${EX.inTextEs}<span class="tm">21:18</span></div>
+    ${opts.noVoice?'':voiceBubble(opts.sel)}
+    ${extra}
+  </div><div class="wainput"><span style="color:var(--text2)">+</span><div class="f">Сообщение</div><span style="color:var(--text2)">${I.mic(20)}</span></div></div>`;
+}
+function longpress(){
+  return waChat(`<div style="height:236px"></div>`,{sel:true,dimOld:true})
+   + `<div class="ctx" style="top:auto;bottom:118px">
+      <div>Ответить ${I.reply}</div><div class="hl" data-go="wa-05-in-sharesheet" style="cursor:pointer"><b>Переслать</b> ${I.fwd}</div><div>Копировать ${I.copy}</div><div>Поделиться ${I.share(18)}</div><div style="color:#FF8A80">Удалить</div></div>
+      <i class="tap" style="left:196px;top:575px"></i>`;
+}
+function shareSheetIn(){
+  return waChat('',{}) + `<div class="dim"></div><div class="ios">
+    <div class="hd"><span class="fic">${I.file}</span><div><div class="t">Голосовое сообщение</div><div class="d">Аудиофайл .opus · 0:12</div></div><span class="x">${I.close}</span></div>
+    <div class="apps">
+      <button class="app hl" data-go="wa-06-in-sheet-voice"><span class="ic" style="background:var(--surface)">${parrot(50)}</span>Parrlo</button>
+      <div class="app"><span class="ic">${I.bubble}</span>Сообщения</div>
+      <div class="app"><span class="ic">${I.file}</span>Файлы</div>
+      <div class="app"><span class="ic">${I.dots}</span>Ещё</div>
+    </div>
+    <div class="acts"><div>Копировать ${I.copy}</div><div>Сохранить в Файлы ${I.file}</div></div>
+    <div class="syslabel">Системный лист iOS «Поделиться»</div>
+  </div><i class="tap" style="left:27px;top:626px"></i>`;
+}
+function listenBtn(){
+  return st.playing
+   ? `<button class="listen" data-act="play"><span class="pl">${I.pause(14)}</span>Слушаем… <span class="prog"><b></b></span><span style="font-size:13px">0:02 / 0:05</span></button>`
+   : `<button class="listen" data-act="play"><span class="pl">${I.play(14)}</span>Слушать перевод</button>`;
+}
+function parrloSheet(kind){
+  const voice=kind==='voice';
+  return `${status()}<div class="wa"></div><div class="dim" style="top:62px"></div>
+  <div class="sheet" style="top:72px">
+    <div class="grab"></div>
+    <div class="shead"><button class="l" data-go="wa-04-in-longpress">Закрыть</button><span class="c">${wm}</span><span class="r"></span></div>
+    <div class="src">${voice?I.wave:I.text}Из WhatsApp · ${voice?'голосовое 0:12':'текст'} · Lucía</div>
+    <div class="scroll">
+      <div class="card"><div class="lab">${voice?'Расшифровка':'Оригинал'} · испанский</div>
+        ${voice?`<div class="vplayer" style="margin:10px 0 8px"><span class="pl">${I.play(14)}</span>${wave(22)}<span class="muted" style="font-size:13px">0:12</span></div>`:''}
+        <div class="mid" style="margin-top:${voice?0:8}px">${voice?EX.inVoiceEs:EX.inTextEs}</div></div>
+      <div class="card" style="border:1px solid #24403A"><div class="lab" style="color:var(--green)">Перевод · русский</div>
+        <div class="big" style="margin-top:8px">${voice?EX.inVoiceRu:EX.inTextRu}</div>
+        ${listenBtn()}
+        ${example}</div>
+    </div>
+    <div class="foot"><button class="btn primary" data-go="wa-08-out-dictate">${I.mic(22)}Ответить</button><button class="btn sec" data-act="copied">${I.copy}Скопировать перевод</button></div>
+  </div>`;
+}
+function dictate(){
+  return `${status()}<div class="wa"></div><div class="dim" style="top:62px"></div>
+  <div class="sheet" style="top:72px">
+    <div class="grab"></div>
+    <div class="shead"><button class="l" data-go="wa-06-in-sheet-voice">Отмена</button><span class="c" style="font-size:17px;font-weight:600">Ответ для Lucía</span><span class="r"></span></div>
+    <div class="scroll">
+      <div class="card" style="padding:12px 14px"><div class="lab">Lucía · перевод</div><div style="font-size:15px;line-height:1.4;margin-top:4px">${EX.inVoiceRu}</div></div>
+      <div style="display:flex;justify-content:center;margin-top:4px"><span class="chipx" style="font-size:13px;padding:5px 10px">русский → español</span></div>
+      <div class="listening">${parrot(88)}<div class="muted" style="font-size:15px">Слушаю — говорите по-русски</div></div>
+      <div class="card" style="min-height:110px"><div class="lab">Вы говорите</div><div class="big" style="margin-top:8px">${EX.outRu}<span class="caret"></span></div></div>
+    </div>
+    <div class="foot" style="align-items:center;gap:10px"><button class="bigstop" data-go="wa-09-out-text" aria-label="Готово">${I.stop}</button><div style="font-size:15px;font-weight:600;margin-top:10px">Нажмите, когда закончите</div></div>
+  </div>`;
+}
+function sendScreen(){
+  const v=st.mode==='voice';
+  const noClone=cur.id==='wa-11-out-stdvoice';
+  const voiceMine = v && st.voice==='mine' && !noClone;
+  const opts = v ? `
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <button class="opt${voiceMine?' on':''}${noClone?' dis':''}" data-act="voice" data-v="mine"><span class="rad"></span><div><div class="t">Мой голос</div><div class="d">${noClone?'Голос ещё не создан':'Ваш голос, созданный в Parrlo'}</div></div>${noClone?`<span class="lnk">Создать</span>`:''}</button>
+      <button class="opt${!voiceMine?' on':''}" data-act="voice" data-v="std"><span class="rad"></span><div><div class="t">Стандартный голос</div><div class="d">Голос iPhone</div></div></button>
+    </div>
+    <div class="card" style="padding:12px 14px;background:var(--ink)"><div class="vplayer"><button class="pl" style="background:var(--green);color:var(--ink)" data-act="play" aria-label="Прослушать">${st.playing?I.pause(14):I.play(14)}</button>${wave(20,true)}<span class="muted" style="font-size:13px">0:04</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;gap:8px"><span class="muted" style="font-size:13px">Прослушайте перед отправкой</span><span class="chipw">Синтетический голос (ИИ)</span></div></div>`
+  : `<div class="card" style="padding:12px 14px;background:var(--ink)"><div class="lab">Уйдёт в WhatsApp</div><div style="font-size:15px;line-height:1.45;margin-top:6px">${EX.outEs}<br><br><span class="muted">${EX.sig}</span></div>
+      <div class="muted" style="font-size:13px;line-height:1.4;margin-top:8px">Подпись можно стереть в WhatsApp или выключить в Настройках.</div></div>`;
+  return `${status()}<div class="wa"></div><div class="dim" style="top:62px"></div>
+  <div class="sheet" style="top:72px">
+    <div class="grab"></div>
+    <div class="shead"><button class="l" data-go="wa-08-out-dictate">Назад</button><span class="c" style="font-size:17px;font-weight:600">Ответ для Lucía</span><span class="r"></span></div>
+    <div class="scroll">
+      <div class="card"><div class="lab">Вы сказали · русский</div><div style="font-size:15px;line-height:1.4;margin-top:4px" class="muted">${EX.outRu}</div>
+        <div class="lab" style="color:var(--green);margin-top:12px">Перевод · español</div><div class="big" style="margin-top:6px;font-size:21px">${EX.outEs}</div>${example}</div>
+      <div class="lab" style="margin-top:2px">Как отправить</div>
+      <div class="seg"><button class="${v?'':'on'}" data-act="mode" data-v="text">${I.text}Текстом</button><button class="${v?'on':''}" data-act="mode" data-v="voice">${I.wave}Голосом</button></div>
+      ${opts}
+    </div>
+    <div class="foot"><button class="btn primary" data-act="send">${I.share(20)}Отправить в WhatsApp</button></div>
+  </div>`;
+}
+function chatPicker(){
+  const chats=[['L','Lucía','21:20',true],['M','Mamá','вчера'],['D','Diego','вчера'],['О','Оля','пн'],['T','Trabajo','пн']];
+  return `${status()}<div class="wa"><div class="walabel">WhatsApp (схема)</div>
+   <div class="wahead" style="justify-content:space-between"><span style="color:var(--text2);font-size:16px">Отмена</span><span class="nm">Выберите чат</span><span style="width:56px"></span></div>
+   <div style="padding:10px 14px"><div style="height:38px;border-radius:10px;background:#262B32;display:flex;align-items:center;gap:8px;padding:0 12px;color:var(--text2);font-size:15px">${I.search}Поиск</div></div>
+   <div style="font-size:13px;color:var(--text2);padding:4px 16px 6px;font-weight:600">Недавние</div>
+   ${chats.map(c=>`<div style="display:flex;align-items:center;gap:12px;padding:10px 16px;${c[3]?'background:#1F252C':''}"><div class="ava" style="width:44px;height:44px">${c[0]}</div><div style="flex:1;font-size:16px;font-weight:600">${c[1]}</div>${c[3]?`<span style="width:24px;height:24px;border-radius:12px;background:#E8ECF1;color:var(--ink);display:grid;place-items:center">${I.check}</span>`:`<span style="width:24px;height:24px;border-radius:12px;border:2px solid #5A6472"></span>`}</div>`).join('')}
+   <div style="margin-top:auto;background:var(--waHead);padding:12px 14px 40px;border-top:1px solid #262B33">
+     <div style="font-size:13px;color:var(--text2);margin-bottom:6px">Сообщение (можно изменить)</div>
+     <div style="background:#262B32;border-radius:12px;padding:10px 12px;font-size:15px;line-height:1.4">${EX.outEs}<br><br>${EX.sig}</div>
+     <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px"><span style="font-size:14px;color:var(--text2)">Lucía</span><button data-go="wa-14-out-result" style="height:44px;padding:0 20px;border-radius:22px;background:#E8ECF1;color:var(--ink);font-weight:700;font-size:16px">Отправить</button></div>
+   </div></div>`;
+}
+function shareSheetOut(){
+  st.mode='voice';
+  return sendScreen() + `<div class="dim" style="z-index:11"></div><div class="ios" style="z-index:12">
+    <div class="hd"><span class="fic" style="background:var(--successBg);color:var(--green)">${I.wave}</span><div><div class="t">Ответ для Lucía.m4a</div><div class="d">Аудиофайл · 0:04 · Синтетический голос (ИИ)</div></div><span class="x">${I.close}</span></div>
+    <div class="apps">
+      <button class="app hl" data-go="wa-14-out-result"><span class="ic">WA</span>WhatsApp</button>
+      <div class="app"><span class="ic">${I.bubble}</span>Сообщения</div>
+      <div class="app"><span class="ic">${I.file}</span>Файлы</div>
+      <div class="app"><span class="ic">${I.dots}</span>Ещё</div>
+    </div>
+    <div class="acts"><div>Сохранить в Файлы ${I.file}</div></div>
+    <div class="syslabel">Системный лист iOS «Поделиться» · дальше — выбор чата в WhatsApp</div>
+  </div><i class="tap" style="left:27px;top:654px"></i>`;
+}
+function result(){
+  const asText = st.mode==='text' && !document.body.classList.contains('shot');
+  const out = asText
+   ? `<div class="b out">${EX.outEs}<br><br><span style="color:#C7CED8">${EX.sig}</span><span class="tm">21:24</span></div>`
+   : `<div class="b out" style="width:300px"><div style="display:flex;align-items:center;gap:10px"><span style="width:44px;height:44px;border-radius:10px;background:#46566A;display:grid;place-items:center;flex:none">${I.file}</span><div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:600">Ответ для Lucía.m4a</div><div style="font-size:13px;color:#C7CED8">Аудиофайл · 0:04</div></div><span style="width:34px;height:34px;border-radius:17px;background:#46566A;display:grid;place-items:center;flex:none">${I.play(14)}</span></div><span class="tm">21:24</span></div>`;
+  return waChat(out + (asText?'':`<div style="align-self:stretch;margin-top:6px;display:flex;justify-content:center"><span class="chipw" style="font-size:13px;padding:6px 10px">Аудиофайл, а не голосовое — проверить App</span></div>`),{});
+}
+function render(){
+  const sc=$('#screen'); let h='';
+  switch(cur.id){
+    case 'wa-01-home-card': h=home(); break;
+    case 'wa-02-onboarding': h=onboarding(); break;
+    case 'wa-03-empty-tip': h=emptyTip(); break;
+    case 'wa-04-in-longpress': h=longpress(); break;
+    case 'wa-05-in-sharesheet': h=shareSheetIn(); break;
+    case 'wa-06-in-sheet-voice': h=parrloSheet('voice'); break;
+    case 'wa-07-in-sheet-text': h=parrloSheet('text'); break;
+    case 'wa-08-out-dictate': h=dictate(); break;
+    case 'wa-09-out-text': case 'wa-10-out-myvoice': case 'wa-11-out-stdvoice': h=sendScreen(); break;
+    case 'wa-12-out-handoff-text': h=chatPicker(); break;
+    case 'wa-13-out-handoff-voice': h=shareSheetOut(); break;
+    case 'wa-14-out-result': h=result(); break;
+  }
+  sc.innerHTML=h+'<i class="homebar"></i>';
+  fit();
+}
+function fit(){
+  if (document.body.classList.contains('shot')) return;
+  const b=$('#bezel'); const H=window.innerHeight-40; const hh=b.offsetHeight; const s=Math.min(1,H/hh);
+  b.style.transform=`scale(${s})`; b.parentElement.style.height=(hh*s+10)+'px';
+}
+function nav(){
+  let h='';
+  for (const s of S){
+    if (s.sec){ h+=`<h2>${s.sec}</h2>`; continue; }
+    h+=`<button data-go="${s.id}" class="${cur&&cur.id===s.id?'on':''}">${s.t}<small>${s.d}</small></button>`;
+  }
+  $('#nav').innerHTML=h;
+}
+function notes(){
+  const sw = ['wa-09-out-text','wa-10-out-myvoice','wa-11-out-stdvoice'].includes(cur.id)
+   ? `<div class="ctrl"><button data-act="mode" data-v="text" class="${st.mode==='text'?'on':''}">Текстом</button><button data-act="voiceGo" data-v="mine" class="${st.mode==='voice'&&st.voice==='mine'&&cur.id!=='wa-11-out-stdvoice'?'on':''}">Голосом · «Мой голос»</button><button data-act="voiceGo" data-v="std" class="${st.mode==='voice'&&(st.voice==='std'||cur.id==='wa-11-out-stdvoice')?'on':''}">Голосом · стандартный</button></div>` : '';
+  $('#notes').innerHTML=`<h3>${cur.t}</h3>${cur.n}${sw}<div class="ctrl"><button data-act="reset">Сбросить экран</button></div><p style="margin-top:10px">Все переводы и голоса в прототипе — заготовленные примеры. Кадр отдельно: <code>?shot=${cur.id}</code></p>`;
+}
+const PRE={'wa-09-out-text':{mode:'text'},'wa-10-out-myvoice':{mode:'voice',voice:'mine'},'wa-11-out-stdvoice':{mode:'voice',voice:'std'},'wa-14-out-result':{mode:'voice'}};
+function go(id,keep){
+  cur=S.find(s=>s.id===id)||S[1];
+  const prev=st;
+  st=Object.assign({},BASE,PRE[id]||{});
+  if (keep && prev && id==='wa-14-out-result') st.mode=prev.mode;
+  if (!document.body.classList.contains('shot')) history.replaceState(null,'','#'+cur.id);
+  nav(); notes(); render();
+}
+document.addEventListener('click',e=>{
+  const g=e.target.closest('[data-go]'); if (g){ go(g.dataset.go,true); return; }
+  const a=e.target.closest('[data-act]'); if(!a) return;
+  const v=a.dataset.v;
+  switch(a.dataset.act){
+    case 'hideHint': st.hint=false; break;
+    case 'play': st.playing=!st.playing; break;
+    case 'copied': flash('Перевод скопирован'); return;
+    case 'mode': if (v==='text') { go('wa-09-out-text'); return; } go(st.voice==='std'||cur.id==='wa-11-out-stdvoice'?'wa-11-out-stdvoice':'wa-10-out-myvoice'); return;
+    case 'voice': if (cur.id==='wa-11-out-stdvoice' && v==='mine'){ flash('Прототип: откроется согласие «Мой голос»'); return; } go(v==='mine'?'wa-10-out-myvoice':'wa-11-out-stdvoice'); return;
+    case 'voiceGo': go(v==='mine'?'wa-10-out-myvoice':'wa-11-out-stdvoice'); return;
+    case 'send': if (st.mode==='text') { const m=st.mode; go('wa-12-out-handoff-text'); st.mode=m; } else go('wa-13-out-handoff-voice'); return;
+    case 'reset': go(cur.id); return;
+  }
+  render();
+});
+function flash(msg){ const n=document.createElement('div'); n.className='proto'; n.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:99'; n.textContent=msg; document.body.appendChild(n); setTimeout(()=>n.remove(),1800); }
+window.addEventListener('resize',fit);
+const q=new URLSearchParams(location.search);
+if (q.get('shot')) document.body.classList.add('shot');
+go(q.get('shot') || location.hash.slice(1) || 'wa-01-home-card');
+</script>
+</body>
+</html>
