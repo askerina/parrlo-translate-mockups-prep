@@ -2,7 +2,7 @@
 
 Интерактивный HTML-прототип клавиатуры Parrlo: пишете по-русски — в чат уходит перевод на ES или EN; есть перевод скопированного входящего сообщения. **Прототип: переводы заранее заготовлены.** Это макет, не прод-код.
 
-**Превью:** https://muratpod.github.io/parrlo-translate-mockups-prep/keyboard/
+**Превью:** https://askerina.github.io/parrlo-translate-mockups-prep/keyboard/
 Отдельный кадр без рамки: `index.html?shot=<id>` (например `?shot=kb-04-preview`).
 
 | Файл | Что внутри |
